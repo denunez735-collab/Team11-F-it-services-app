@@ -1,4 +1,4 @@
-# Team MacroFit Coach Team 11 IT Services App
+# Team MacroFit Coach IT Services App
 
 ## Project Goal
 
