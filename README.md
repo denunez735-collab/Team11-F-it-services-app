@@ -17,20 +17,20 @@ This project is a cloud-hosted IT services web application designed to demonstra
 ## Team Roles
 
 ### App & Front-End Specialist
-Responsible for:
+Responsible for: Samuel Quiroz
 - HTML/CSS/JavaScript
 - Resume website
 - UI/UX design
 
 ### DevOps & Backend Engineer
-Responsible for:
+Responsible for: Dennis Nunez & Samuel Quiroz
 - GitHub repository organization
 - Backend planning
 - CI/CD pipelines
 - Cloud deployment
 
 ### Security & Network Engineer
-Responsible for:
+Responsible for: Dennis Nunez & Samuel Quiroz
 - Cloud networking
 - IAM permissions
 - HTTPS and DNS planning
