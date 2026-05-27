@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MicroFit Coach: fitness coaching landing page with macro tracker, workout log, coach contact, visitor counter, team info, and blog.">
+    <title>MicroFit Coach</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p1CmAyvD8Lsq0N4z4Cu3PR+X1TdX0Cq0fvmQUjFQiQpZV+ZwfdWZUohs2zTKG+hqcRP0xj8xIoP0ks5G0S7etg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2P60ZPh5gAwx41yIJEcUwyy4hzVsrgyoV/rvDQlMDsi5q8+To7+ppizEQohWQC47yNvRSvRotA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a class="brand" href="index.html">
+                <img src="assets/logo.svg" alt="MicroFit logo" class="site-logo">
+                <span class="brand-text">MicroFit Coach</span>
+            </a>
+            <button id="hamburger" class="hamburger" aria-label="Open navigation"><span></span><span></span><span></span></button>
+            <div class="nav-menu" id="navMenu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#macros" class="nav-link">Macros</a>
+                <a href="#meals" class="nav-link">Meals</a>
+                <a href="#workouts" class="nav-link">Workouts</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <div id="navAuthContainer"></div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-copy">
+                <span class="eyebrow">Track Your Macros. Log Your Workouts. Stay Connected.</span>
+                <h1>MicroFit Coach helps busy clients build sustainable fitness habits.</h1>
+                <p class="hero-text">A modern coaching landing page with nutrition insights, workout logging, client communication, and a cloud visitor counter ready for deployment.</p>
+                <div class="hero-cta">
+                    <a href="#macros" class="btn btn-primary">Start Tracking</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Coach</a>
+                </div>
+                <div class="hero-metrics">
+                    <div class="metric-card" data-aos="fade-up" data-aos-delay="0"><span class="counter-value" data-target="4.9">4.9</span><span> / 5.0</span><p>Client satisfaction</p></div>
+                    <div class="metric-card" data-aos="fade-up" data-aos-delay="100"><span class="counter-value" data-target="1200">1200</span><span>+</span><p>Client check-ins</p></div>
+                    <div class="metric-card" data-aos="fade-up" data-aos-delay="200"><span class="counter-value" data-target="6">6</span><p>Core features</p></div>
+                </div>
+            </div>
+            <aside class="hero-panel">
+                <div class="panel-header">
+                    <div>
+                        <p>Live visitor counter</p>
+                        <h2>Visitor count</h2>
+                    </div>
+                    <span class="badge">Cloud-ready</span>
+                </div>
+                <div class="counter-card">
+                    <strong id="visitorCount">--</strong>
+                    <p id="visitorStatus">Connecting to visitor API...</p>
+                </div>
+                <div class="dashboard-preview">
+                    <div><span>Calories</span><strong>2,100</strong></div>
+                    <div><span>Workouts</span><strong>18</strong></div>
+                    <div><span>Coach chats</span><strong>72</strong></div>
+                </div>
+            </aside>
+        </section>
+
+        <section id="features" class="section features">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Core capabilities</span>
+                    <h2>Designed for beginner fitness clients and coaching teams.</h2>
+                    <p>Simple client-facing tools that can later connect to a real serverless API and NoSQL storage.</p>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card" data-aos="fade-up">
+                        <i class="fas fa-chart-pie"></i>
+                        <h3>Macro Tracking</h3>
+                        <p>Visual nutrition dashboard for calories, protein, carbs, fats, and hydration.</p>
+                    </article>
+                    <article class="feature-card" data-aos="fade-up" data-aos-delay="50">
+                        <i class="fas fa-dumbbell"></i>
+                        <h3>Workout Logging</h3>
+                        <p>Log exercises, sets, reps, weights, cardio and movement notes.</p>
+                    </article>
+                    <article class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Progress Monitoring</h3>
+                        <p>Summary cards and charts give clients a quick progress snapshot.</p>
+                    </article>
+                    <article class="feature-card" data-aos="fade-up" data-aos-delay="150">
+                        <i class="fas fa-comments"></i>
+                        <h3>Coach Communication</h3>
+                        <p>Contact form structure is ready for future serverless message submission.</p>
+                    </article>
+                    <article class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-user-check"></i>
+                        <h3>Client Check-ins</h3>
+                        <p>Coaching check-ins and simple habit tracking for accountability.</p>
+                    </article>
+                    <article class="feature-card" data-aos="fade-up" data-aos-delay="250">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud Backend</h3>
+                        <p>Visitor counter is built to connect to a Python API and DynamoDB.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="macros" class="section tracker">
+            <div class="container tracker-grid">
+                <div class="tracker-panel">
+                    <div class="section-header">
+                        <span class="eyebrow">Nutrition dashboard</span>
+                        <h2>Macro Tracker</h2>
+                        <p>Use the form to update sample nutrition numbers and preview the tracker layout.</p>
+                    </div>
+                    <div class="macro-grid">
+                        <div class="tracker-card"><span>Calories</span><strong id="calorieValue">2,100</strong></div>
+                        <div class="tracker-card"><span>Protein</span><strong id="proteinValue">150g</strong></div>
+                        <div class="tracker-card"><span>Carbs</span><strong id="carbsValue">210g</strong></div>
+                        <div class="tracker-card"><span>Fats</span><strong id="fatValue">72g</strong></div>
+                        <div class="tracker-card"><span>Water</span><strong id="waterValue">2.3L</strong></div>
+                    </div>
+                </div>
+                <form id="macroForm" class="tracker-form">
+                    <div class="form-row"><label for="calories">Calories</label><input id="calories" type="number" min="0" value="2100"></div>
+                    <div class="form-row"><label for="protein">Protein (g)</label><input id="protein" type="number" min="0" value="150"></div>
+                    <div class="form-row"><label for="carbs">Carbs (g)</label><input id="carbs" type="number" min="0" value="210"></div>
+                    <div class="form-row"><label for="fats">Fats (g)</label><input id="fats" type="number" min="0" value="72"></div>
+                    <div class="form-row"><label for="water">Water (L)</label><input id="water" type="number" step="0.1" min="0" value="2.3"></div>
+                    <button type="submit" class="btn btn-primary">Update Dashboard</button>
+                    <p class="form-note">This sample tracker can later connect to a database for actual client nutrition logs.</p>
+                </form>
+            </div>
+        </section>
+
+        <section id="calculator" class="section calculator">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Personalized Health</span>
+                    <h2>Health Dashboard & Calculator</h2>
+                    <p>Calculate your ideal calorie intake, BMI category, hydration goals, and personalized macros.</p>
+                </div>
+                <div class="calc-grid">
+                    <form id="calcForm" class="tracker-form calc-form">
+                        <div class="form-row half-row">
+                            <div>
+                                <label for="bodyWeight">Weight</label>
+                                <input id="bodyWeight" type="number" step="0.1" min="0" value="70">
+                            </div>
+                            <div>
+                                <label for="weightUnit">Unit</label>
+                                <select id="weightUnit">
+                                    <option value="kg">kg</option>
+                                    <option value="lb">lb</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div>
+                                <label for="heightCm">Height (cm)</label>
+                                <input id="heightCm" type="number" step="0.1" min="0" value="175">
+                            </div>
+                        </div>
+
+                        <div class="form-row half-row">
+                            <div>
+                                <label for="activityLevel">Activity level</label>
+                                <select id="activityLevel">
+                                    <option value="1.2">Sedentary</option>
+                                    <option value="1.375">Light</option>
+                                    <option value="1.55" selected>Moderate</option>
+                                    <option value="1.725">Active</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="goal">Goal</label>
+                                <select id="goal">
+                                    <option value="0.85">Lose (calorie deficit)</option>
+                                    <option value="1.0" selected>Maintain</option>
+                                    <option value="1.15">Gain (surplus)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row half-row">
+                            <div>
+                                <label for="proteinPerKg">Protein (g/kg)</label>
+                                <input id="proteinPerKg" type="number" step="0.1" min="0" value="2.0">
+                            </div>
+                            <div>
+                                <label for="fatPerKg">Fat (g/kg)</label>
+                                <input id="fatPerKg" type="number" step="0.1" min="0" value="0.9">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                        <p class="form-note">Results are estimates for demo purposes only.</p>
+                    </form>
+
+                    <div class="calc-results panel-card">
+                        <h3>Health Dashboard</h3>
+                        
+                        <div class="dashboard-section">
+                            <h4>BMI Status</h4>
+                            <div class="bmi-display">
+                                <div class="bmi-value">
+                                    <span class="bmi-number" id="calcBMI">--</span>
+                                    <span class="bmi-label" id="bmiCategory">--</span>
+                                </div>
+                                <div class="status-indicator" id="bmiStatus"></div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <h4>Daily Recommendations</h4>
+                            <div class="panel-card-row">
+                                <div><span>Calorie Target</span><strong id="calcCalories">--</strong></div>
+                                <div><span>Goal Adjustment</span><strong id="goalAdjustment">--</strong></div>
+                            </div>
+                            <div class="panel-card-row">
+                                <div><span>Water Intake</span><strong id="waterIntake">--</strong></div>
+                                <div><span>Goal Status</span><strong id="goalStatus" style="color: var(--primary);">--</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <h4>Macro Targets</h4>
+                            <div class="panel-card-row">
+                                <div><span>Protein</span><strong id="calcProtein">--</strong></div>
+                                <div><span>Carbs</span><strong id="calcCarbs">--</strong></div>
+                            </div>
+                            <div class="panel-card-row">
+                                <div><span>Fats</span><strong id="calcFats">--</strong></div>
+                                <div><span>Height</span><strong id="calcHeight">--</strong></div>
+                            </div>
+                        </div>
+                        <p id="calcNote" class="form-note">Values rounded for simplicity. This is a demo calculator.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="meals" class="section meal-planner">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Daily nutrition plan</span>
+                    <h2>Meal Planner</h2>
+                    <p>Track your meals throughout the day and monitor macro targets in real-time.</p>
+                </div>
+                <div class="meals-grid">
+                    <article class="meal-card">
+                        <div class="meal-header">
+                            <h3><i class="fas fa-sun"></i> Breakfast</h3>
+                            <span class="meal-time">7:30 AM</span>
+                        </div>
+                        <div class="meal-items">
+                            <div class="meal-item">
+                                <span class="item-name">Oatmeal with berries</span>
+                                <span class="item-macro">45g carbs · 8g protein · 4g fat</span>
+                            </div>
+                            <div class="meal-item">
+                                <span class="item-name">Greek yogurt</span>
+                                <span class="item-macro">12g carbs · 15g protein · 3g fat</span>
+                            </div>
+                        </div>
+                        <div class="meal-subtotal">
+                            <span>Subtotal</span>
+                            <strong>57g C · 23g P · 7g F</strong>
+                        </div>
+                    </article>
+                    <article class="meal-card">
+                        <div class="meal-header">
+                            <h3><i class="fas fa-cloud"></i> Lunch</h3>
+                            <span class="meal-time">12:30 PM</span>
+                        </div>
+                        <div class="meal-items">
+                            <div class="meal-item">
+                                <span class="item-name">Grilled chicken breast</span>
+                                <span class="item-macro">0g carbs · 45g protein · 4g fat</span>
+                            </div>
+                            <div class="meal-item">
+                                <span class="item-name">Brown rice & veggies</span>
+                                <span class="item-macro">65g carbs · 6g protein · 2g fat</span>
+                            </div>
+                        </div>
+                        <div class="meal-subtotal">
+                            <span>Subtotal</span>
+                            <strong>65g C · 51g P · 6g F</strong>
+                        </div>
+                    </article>
+                    <article class="meal-card">
+                        <div class="meal-header">
+                            <h3><i class="fas fa-moon"></i> Dinner</h3>
+                            <span class="meal-time">6:00 PM</span>
+                        </div>
+                        <div class="meal-items">
+                            <div class="meal-item">
+                                <span class="item-name">Salmon fillet</span>
+                                <span class="item-macro">0g carbs · 35g protein · 16g fat</span>
+                            </div>
+                            <div class="meal-item">
+                                <span class="item-name">Sweet potato & salad</span>
+                                <span class="item-macro">48g carbs · 4g protein · 3g fat</span>
+                            </div>
+                        </div>
+                        <div class="meal-subtotal">
+                            <span>Subtotal</span>
+                            <strong>48g C · 39g P · 19g F</strong>
+                        </div>
+                    </article>
+                </div>
+                <div class="macro-totals">
+                    <div class="totals-row">
+                        <span>Daily Total</span>
+                        <div class="totals-values">
+                            <div class="total-macro"><span class="macro-label">Carbs</span><strong>170g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Protein</span><strong>113g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Fats</span><strong>32g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Calories</span><strong>2,100</strong></div>
+                        </div>
+                    </div>
+                    <div class="totals-row targets">
+                        <span>Daily Target</span>
+                        <div class="totals-values">
+                            <div class="total-macro"><span class="macro-label">Carbs</span><strong>210g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Protein</span><strong>150g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Fats</span><strong>72g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Calories</span><strong>2,100</strong></div>
+                        </div>
+                    </div>
+                    <div class="totals-row remaining">
+                        <span>Remaining</span>
+                        <div class="totals-values">
+                            <div class="total-macro"><span class="macro-label">Carbs</span><strong style="color: var(--primary);">40g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Protein</span><strong style="color: var(--primary);">37g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Fats</span><strong style="color: var(--primary);">40g</strong></div>
+                            <div class="total-macro"><span class="macro-label">Calories</span><strong>0</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="workouts" class="section workouts">
+            <div class="container workouts-grid">
+                <div class="workout-panel">
+                    <div class="section-header">
+                        <span class="eyebrow">Training log</span>
+                        <h2>Workout Tracker</h2>
+                        <p>Log sample workouts and review the table layout for exercise entries.</p>
+                    </div>
+                    <div class="workout-summary">
+                        <div class="summary-card"><span>Latest session</span><strong>Full body strength</strong></div>
+                        <div class="summary-card"><span>Total cardio</span><strong>35 min</strong></div>
+                        <div class="summary-card"><span>Consistency</span><strong>+7%</strong></div>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="log-table">
+                            <thead>
+                                <tr><th>Date</th><th>Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th><th>Cardio</th><th>Notes</th></tr>
+                            </thead>
+                            <tbody id="workoutTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <form id="workoutForm" class="tracker-form">
+                    <div class="form-row"><label for="exercise">Exercise</label><input id="exercise" type="text" placeholder="Push-ups, squat, row" required></div>
+                    <div class="form-row half-row"><div><label for="sets">Sets</label><input id="sets" type="number" min="1" value="3" required></div><div><label for="reps">Reps</label><input id="reps" type="number" min="1" value="12" required></div></div>
+                    <div class="form-row half-row"><div><label for="weight">Weight</label><input id="weight" type="text" placeholder="45kg / bodyweight"></div><div><label for="cardio">Cardio (min)</label><input id="cardio" type="number" min="0" value="0"></div></div>
+                    <div class="form-row"><label for="workoutNotes">Notes</label><textarea id="workoutNotes" rows="4" placeholder="What felt good? Any mobility notes?"></textarea></div>
+                    <button type="submit" class="btn btn-primary">Add Workout Entry</button>
+                    <p class="form-note">Entries are saved locally in your browser for demo purposes.</p>
+                </form>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">What clients say</span>
+                    <h2>Trusted coaching feedback</h2>
+                    <p>Real client perspectives on habit-building, progress, and working with MicroFit Coach.</p>
+                </div>
+                <div class="testimonial-grid">
+                    <article class="testimonial-card">
+                        <p>"MicroFit made nutrition easy. The tracker helped me hit goals without guesswork, and the coaching guidance kept me consistent."</p>
+                        <div class="testimonial-meta">
+                            <strong>Jenna R.</strong>
+                            <span>Beginner to strength training</span>
+                        </div>
+                    </article>
+                    <article class="testimonial-card">
+                        <p>"The workout log is simple but powerful. I love that I can save entries and keep the momentum going session after session."</p>
+                        <div class="testimonial-meta">
+                            <strong>Omar L.</strong>
+                            <span>Remote coaching client</span>
+                        </div>
+                    </article>
+                    <article class="testimonial-card">
+                        <p>"This landing page feels like a polished coaching product already. It's clear, motivating, and great for client onboarding."</p>
+                        <div class="testimonial-meta">
+                            <strong>Priya S.</strong>
+                            <span>Fitness enthusiast</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="container contact-grid">
+                <div class="contact-panel">
+                    <div class="section-header">
+                        <span class="eyebrow">Connect</span>
+                        <h2>Contact Your Coach</h2>
+                        <p>Submit your details and fitness goals. The form is ready for serverless API integration later.</p>
+                    </div>
+                    <div class="contact-card">
+                        <div><i class="fas fa-envelope"></i><span>hello@microfitcoach.com</span></div>
+                        <div><i class="fas fa-phone"></i><span>+1 (555) 987-6543</span></div>
+                        <div><i class="fas fa-map-marker-alt"></i><span>Online coaching, worldwide</span></div>
+                    </div>
+                </div>
+                <form id="contactForm" class="tracker-form">
+                    <div class="form-row"><label for="clientName">Name</label><input id="clientName" name="clientName" type="text" required placeholder="Your name"></div>
+                    <div class="form-row"><label for="clientEmail">Email</label><input id="clientEmail" name="clientEmail" type="email" required placeholder="Your email"></div>
+                    <div class="form-row"><label for="goal">Fitness Goal</label><input id="goal" name="goal" type="text" placeholder="Strength, weight loss, mobility"></div>
+                    <div class="form-row"><label for="clientMessage">Message</label><textarea id="clientMessage" name="clientMessage" rows="5" required placeholder="Tell your coach what you want to achieve"></textarea></div>
+                    <button type="submit" class="btn btn-primary">Send Inquiry</button>
+                    <p class="form-note">Save the form data for later API or serverless integration.</p>
+                </form>
+            </div>
+        </section>
+
+        <section class="section more-links">
+            <div class="container more-grid">
+                <a href="team.html" class="path-card">
+                    <h3>Team Info</h3>
+                    <p>Meet the project team and view GitHub profile links for every role.</p>
+                </a>
+                <a href="blog.html" class="path-card">
+                    <h3>Project Blog</h3>
+                    <p>Read the capstone write-up, cloud architecture notes, and deployment plan.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>MicroFit Coach · Fitness coaching UI with cloud visitor counter.</p>
+            <p>Built for a real-world cloud capstone deployment demo.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fXDf/d8sfAjgANq8z4Zw5j1xcr/6I8SV5X7u5yPtFJ5L5qv6EGHhLGJnEODp7s0Y93OhJfGmKWPxMEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

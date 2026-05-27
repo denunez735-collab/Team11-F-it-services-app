@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="80" viewBox="0 0 360 80" role="img" aria-labelledby="title">
+  <title id="title">MicroFit wordmark</title>
+  <defs>
+    <linearGradient id="wg" x1="0" x2="1">
+      <stop offset="0" stop-color="#00d4ff"/>
+      <stop offset="1" stop-color="#7b61ff"/>
+    </linearGradient>
+  </defs>
+  <text x="12" y="48" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="36" font-weight="800" fill="#eef4ff">Micro</text>
+  <text x="170" y="48" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="36" font-weight="800" fill="url(#wg)">Fit</text>
+  <rect x="12" y="58" width="220" height="6" rx="3" fill="rgba(255,255,255,0.04)"/>
+</svg>

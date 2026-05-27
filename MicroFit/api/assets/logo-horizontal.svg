@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="80" viewBox="0 0 360 80" role="img" aria-labelledby="title">
+  <title id="title">MicroFit horizontal logo</title>
+  <defs>
+    <linearGradient id="hg" x1="0" x2="1">
+      <stop offset="0" stop-color="#00d4ff"/>
+      <stop offset="1" stop-color="#7b61ff"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8,12)">
+    <g>
+      <rect x="0" y="8" width="12" height="36" rx="3" fill="#111" />
+      <rect x="36" y="8" width="12" height="36" rx="3" fill="#111" />
+      <rect x="12" y="18" width="24" height="16" rx="8" fill="url(#hg)" />
+      <path d="M70 34 L78 22 L82 38 L90 18 L96 34" stroke="#ffdd57" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="120" y="36" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="28" font-weight="800" fill="#eef4ff">Micro</text>
+    <text x="200" y="36" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="28" font-weight="800" fill="url(#hg)">Fit</text>
+  </g>
+</svg>

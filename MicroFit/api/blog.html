@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MicroFit Coach project blog and capstone write-up.">
+    <title>MicroFit Coach | Blog</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p1CmAyvD8Lsq0N4z4Cu3PR+X1TdX0Cq0fvmQUjFQiQpZV+ZwfdWZUohs2zTKG+hqcRP0xj8xIoP0ks5G0S7etg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a class="brand" href="index.html">
+                <img src="assets/logo.svg" alt="MicroFit logo" class="site-logo">
+                <span class="brand-text">MicroFit Coach</span>
+            </a>
+            <button id="hamburger" class="hamburger" aria-label="Open navigation"><span></span><span></span><span></span></button>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="index.html#macros" class="nav-link">Macro Tracker</a>
+                <a href="index.html#workouts" class="nav-link">Workouts</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="team.html" class="nav-link">Team Info</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section blog-hero">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Project write-up</span>
+                    <h2>MicroFit Coach capstone blog and deployment summary.</h2>
+                    <p>This write-up documents the purpose, cloud services, visitor counter design, IaC plan, CI/CD pipeline, monitoring, and lessons learned.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section blog-post">
+            <div class="container">
+                <article class="blog-card">
+                    <h3>Project purpose</h3>
+                    <p>The goal is to build a fitness coaching landing page that feels like a real client dashboard while demonstrating cloud architecture and deployment readiness. It supports macro tracking, workout logging, coach contact, visitor counting, team pages, and documentation for a 4-week capstone.</p>
+                </article>
+                <article class="blog-card">
+                    <h3>Cloud services used</h3>
+                    <ul>
+                        <li>Static hosting with AWS S3 and CloudFront (or Azure Blob Storage + CDN)</li>
+                        <li>Python API implemented as an AWS Lambda / Azure Function</li>
+                        <li>NoSQL counter table with DynamoDB / Cosmos DB</li>
+                        <li>Monitoring with AWS CloudWatch / Azure Monitor</li>
+                    </ul>
+                </article>
+                <article class="blog-card">
+                    <h3>Visitor counter architecture</h3>
+                    <p>The website calls a serverless API endpoint that reads and increments a visitor counter in a NoSQL database. The API returns the updated count to display on the landing page, and the front end gracefully falls back when the cloud endpoint is unavailable.</p>
+                </article>
+                <article class="blog-card">
+                    <h3>Infrastructure as Code</h3>
+                    <p>The project includes Terraform templates to provision static hosting, serverless functions, the database table, IAM roles, and optional CDN resources. IaC keeps deployments repeatable and version controlled.</p>
+                </article>
+                <article class="blog-card">
+                    <h3>CI/CD pipeline</h3>
+                    <p>A GitHub Actions workflow validates Terraform, builds the site, and deploys static assets to the cloud. Secrets are stored in GitHub Secrets, and the pipeline can trigger on main branch pushes.</p>
+                </article>
+                <article class="blog-card">
+                    <h3>Monitoring and security</h3>
+                    <p>Use cloud monitoring to track API requests, function errors, and visitor count updates. Configure HTTPS with a custom domain and use least-privilege IAM roles for the Lambda function and S3 access.</p>
+                </article>
+                <article class="blog-card">
+                    <h3>Challenges and lessons learned</h3>
+                    <ul>
+                        <li>Balancing a polished landing page with a simple demo-ready backend.</li>
+                        <li>Structuring the app for future database-connected macros and workouts.</li>
+                        <li>Keeping deployment infrastructure readable for team review and grading.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>MicroFit Coach · Project blog for the fitness coaching cloud capstone.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
