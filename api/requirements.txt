@@ -1,0 +1,5 @@
+# MacroFit Coach — Azure Function Python Dependencies
+# Install with: pip install -r requirements.txt
+
+azure-functions>=1.17.0
+azure-cosmos>=4.5.1

@@ -1,0 +1,264 @@
+# ============================================================
+# MacroFit Coach — GitHub Actions CI/CD Pipeline
+# Cloud Computing Capstone Project 2026
+#
+# Triggers on every push to the main branch.
+# Also runs validation (but NOT deployment) on pull requests.
+#
+# Jobs:
+#   1. lint-validate      — Check files exist, lint Python code
+#   2. deploy-static-site — Upload HTML/CSS/JS to Azure Blob Storage
+#   3. deploy-function    — Deploy Python API to Azure Functions
+#   4. deployment-summary — Print confirmation to GitHub Actions log
+#
+# Required GitHub Secrets (Settings → Secrets and variables → Actions):
+#   AZURE_CREDENTIALS        : JSON output from `az ad sp create-for-rbac`
+#   STORAGE_ACCOUNT_NAME     : Azure Storage account name (from terraform output)
+#   FUNCTION_APP_NAME        : Azure Function App name
+#   FUNCTION_APP_KEY         : Azure Function host key (for verify step)
+# ============================================================
+
+name: Deploy MacroFit Coach
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  # Match these to your actual Azure resource names
+  AZURE_FUNCTION_APP_NAME:    macrofit-visitor-api
+  AZURE_FUNCTION_APP_PACKAGE: ./api
+  PYTHON_VERSION:             '3.11'
+
+# ============================================================
+# JOB 1 — Lint and Validate
+# Runs on every push AND pull request.
+# Catches missing files and Python syntax errors before deploying.
+# ============================================================
+jobs:
+  lint-validate:
+    name: Lint and Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ---- Validate required HTML files exist ----
+      - name: Verify HTML files
+        run: |
+          echo "Checking required HTML files..."
+          for file in index.html team.html blog.html; do
+            if [ ! -f "$file" ]; then
+              echo "ERROR: $file not found!"
+              exit 1
+            fi
+            echo "  [OK] $file"
+          done
+
+      # ---- Validate CSS and JS files exist ----
+      - name: Verify CSS and JS files
+        run: |
+          echo "Checking CSS and JavaScript files..."
+          for file in css/styles.css js/main.js js/counter.js; do
+            if [ ! -f "$file" ]; then
+              echo "ERROR: $file not found!"
+              exit 1
+            fi
+            echo "  [OK] $file"
+          done
+
+      # ---- Validate API files exist ----
+      - name: Verify API files
+        run: |
+          echo "Checking API files..."
+          for file in api/visitor_counter/__init__.py api/visitor_counter/function.json api/host.json api/requirements.txt; do
+            if [ ! -f "$file" ]; then
+              echo "ERROR: $file not found!"
+              exit 1
+            fi
+            echo "  [OK] $file"
+          done
+
+      # ---- Set up Python for linting ----
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # ---- Install flake8 Python linter ----
+      - name: Install flake8 linter
+        run: pip install flake8
+
+      # ---- Lint Python API code ----
+      # max-line-length=120 is more practical than the default 79
+      - name: Lint Python API code
+        run: |
+          echo "Linting Python files in api/..."
+          flake8 api/ \
+            --max-line-length=120 \
+            --exclude=__pycache__,.python_packages \
+            --statistics
+          echo "Python linting passed."
+
+      - name: Validation complete
+        run: echo "All validation checks passed. Ready to deploy."
+
+# ============================================================
+# JOB 2 — Deploy Static Website to Azure Blob Storage
+# Only runs on push to main (not pull requests).
+# ============================================================
+  deploy-static-site:
+    name: Deploy Static Website
+    runs-on: ubuntu-latest
+    needs: lint-validate  # Only deploy if validation passed
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ---- Log in to Azure using service principal ----
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # ---- Upload static files to Azure Blob Storage $web container ----
+      - name: Deploy HTML files
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob upload-batch \
+              --account-name "${{ secrets.STORAGE_ACCOUNT_NAME }}" \
+              --source . \
+              --destination '$web' \
+              --overwrite true \
+              --pattern "*.html"
+            echo "[OK] HTML files uploaded."
+
+      - name: Deploy CSS files
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob upload-batch \
+              --account-name "${{ secrets.STORAGE_ACCOUNT_NAME }}" \
+              --source . \
+              --destination '$web' \
+              --overwrite true \
+              --pattern "css/*" \
+              --content-type "text/css"
+            echo "[OK] CSS files uploaded."
+
+      - name: Deploy JavaScript files
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob upload-batch \
+              --account-name "${{ secrets.STORAGE_ACCOUNT_NAME }}" \
+              --source . \
+              --destination '$web' \
+              --overwrite true \
+              --pattern "js/*" \
+              --content-type "application/javascript"
+            echo "[OK] JavaScript files uploaded."
+
+      # ---- Print the live site URL ----
+      - name: Get static website URL
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            SITE_URL=$(az storage account show \
+              --name "${{ secrets.STORAGE_ACCOUNT_NAME }}" \
+              --query "primaryEndpoints.web" \
+              --output tsv)
+            echo "Static site live at: $SITE_URL"
+
+# ============================================================
+# JOB 3 — Deploy Azure Functions API (Python)
+# Only runs on push to main (not pull requests).
+# ============================================================
+  deploy-function:
+    name: Deploy Azure Function API
+    runs-on: ubuntu-latest
+    needs: lint-validate  # Only deploy if validation passed
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ---- Set up Python ----
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # ---- Install Python dependencies locally for deployment ----
+      - name: Install Python dependencies
+        run: |
+          cd ${{ env.AZURE_FUNCTION_APP_PACKAGE }}
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt \
+            --target .python_packages/lib/site-packages
+          echo "Dependencies installed."
+
+      # ---- Log in to Azure ----
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # ---- Deploy Function App using official Azure action ----
+      - name: Deploy to Azure Functions
+        uses: Azure/functions-action@v1
+        with:
+          app-name:                   ${{ env.AZURE_FUNCTION_APP_NAME }}
+          package:                    ${{ env.AZURE_FUNCTION_APP_PACKAGE }}
+          scm-do-build-during-deployment: true
+          enable-oryx-build:          true
+
+      # ---- Wait for function to start, then verify it responds ----
+      - name: Verify API is responding
+        run: |
+          echo "Waiting 30 seconds for function to warm up..."
+          sleep 30
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X GET \
+            "https://${{ env.AZURE_FUNCTION_APP_NAME }}.azurewebsites.net/api/visitor_counter" \
+            -H "x-functions-key: ${{ secrets.FUNCTION_APP_KEY }}")
+          echo "API HTTP response code: $HTTP_CODE"
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "[OK] API is responding correctly."
+          else
+            echo "WARNING: API returned $HTTP_CODE. Check Azure portal for logs."
+          fi
+
+# ============================================================
+# JOB 4 — Deployment Summary
+# Runs after both deploy jobs complete (success or failure).
+# ============================================================
+  deployment-summary:
+    name: Deployment Summary
+    runs-on: ubuntu-latest
+    needs: [deploy-static-site, deploy-function]
+    if: always() && github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Print deployment summary
+        run: |
+          echo "============================================"
+          echo "   MACROFIT COACH — DEPLOYMENT COMPLETE    "
+          echo "============================================"
+          echo "  Branch:      ${{ github.ref_name }}"
+          echo "  Commit:      ${{ github.sha }}"
+          echo "  Triggered by: ${{ github.actor }}"
+          echo "  Timestamp:   $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "--------------------------------------------"
+          echo "  Static Site: ${{ needs.deploy-static-site.result }}"
+          echo "  Function API: ${{ needs.deploy-function.result }}"
+          echo "============================================"

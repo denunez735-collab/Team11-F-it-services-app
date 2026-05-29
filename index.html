@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacroFit Coach | Track. Train. Transform.</title>
+    <meta name="description" content="MacroFit Coach — Your all-in-one cloud-powered fitness coaching platform for macro tracking, workout logging, and coach communication.">
+    <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- DEBUG: Uncomment to enable debug overlay
+    <link rel="stylesheet" href="css/debug.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js" defer></script>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION BAR
+         ============================================= -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <img src="assets/logo.png" alt="MacroFit Coach" class="nav-logo-img">
+                <span class="logo-text">MacroFit<span class="accent">Coach</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#macro-tracker">Macros</a></li>
+                <li><a href="#health-calculator">Calculator</a></li>
+                <li><a href="#meal-planner">Meals</a></li>
+                <li><a href="#workout-tracker">Workouts</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Dark / Light mode toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </button>
+                <!-- Auth state: shown/hidden by JS -->
+                <a href="register.html" class="btn btn-primary btn-sm" id="navGetStarted">Get Started</a>
+                <div class="nav-user" id="navUser" style="display:none;">
+                    <span class="nav-user-name" id="navUserName"></span>
+                    <button class="btn btn-ghost btn-sm" id="navLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+                <!-- Mobile hamburger menu -->
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         HERO SECTION
+         ============================================= -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <!-- Badge -->
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Now Live &mdash; Cloud-Powered Fitness Coaching
+                </div>
+
+                <!-- Headline -->
+                <h1 class="hero-title">
+                    Track Your Macros.<br>
+                    Log Your Workouts.<br>
+                    <span class="gradient-text">Stay Connected With Your Coach.</span>
+                </h1>
+
+                <!-- Description -->
+                <p class="hero-description">
+                    MacroFit Coach is your all-in-one fitness coaching platform built on the cloud.
+                    Monitor nutrition, log workouts, and communicate directly with your coach &mdash;
+                    all from one powerful dashboard.
+                </p>
+
+                <!-- Call-to-Action Buttons -->
+                <div class="hero-actions">
+                    <a href="#macro-tracker" class="btn btn-primary btn-lg">
+                        <i class="fas fa-chart-line"></i> Start Tracking
+                    </a>
+                    <a href="#contact" class="btn btn-outline btn-lg">
+                        <i class="fas fa-comments"></i> Contact Coach
+                    </a>
+                </div>
+
+                <!-- Social Proof Stats -->
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value">500+</span>
+                        <span class="stat-label">Active Clients</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-value">10K+</span>
+                        <span class="stat-label">Workouts Logged</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-value">98%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Dashboard Preview Card -->
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <div class="preview-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="preview-title">Today's Overview</span>
+                    </div>
+                    <div class="preview-stats">
+                        <div class="preview-stat green">
+                            <div class="preview-stat-label">Calories</div>
+                            <div class="preview-stat-value">1,847</div>
+                            <div class="preview-progress">
+                                <div class="preview-bar" style="width:74%"></div>
+                            </div>
+                            <div class="preview-stat-sub">Goal: 2,500</div>
+                        </div>
+                        <div class="preview-stat blue">
+                            <div class="preview-stat-label">Protein</div>
+                            <div class="preview-stat-value">142g</div>
+                            <div class="preview-progress">
+                                <div class="preview-bar blue-bar" style="width:79%"></div>
+                            </div>
+                            <div class="preview-stat-sub">Goal: 180g</div>
+                        </div>
+                        <div class="preview-stat orange">
+                            <div class="preview-stat-label">Water</div>
+                            <div class="preview-stat-value">6 cups</div>
+                            <div class="preview-progress">
+                                <div class="preview-bar orange-bar" style="width:75%"></div>
+                            </div>
+                            <div class="preview-stat-sub">Goal: 8 cups</div>
+                        </div>
+                    </div>
+                    <div class="preview-workout">
+                        <div class="preview-workout-title">
+                            <i class="fas fa-dumbbell"></i> Today's Workout
+                        </div>
+                        <div class="preview-exercise">Bench Press &mdash; 4&times;8 @ 185 lbs</div>
+                        <div class="preview-exercise">Squat &mdash; 3&times;10 @ 225 lbs</div>
+                        <div class="preview-exercise">Cardio &mdash; 20 min HIIT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FEATURES SECTION
+         ============================================= -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Everything You Need</span>
+                <h2 class="section-title">Built for Serious Results</h2>
+                <p class="section-desc">
+                    One platform to manage every aspect of your fitness journey &mdash;
+                    from nutrition to training to coach communication.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon green">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>Macro Tracking</h3>
+                    <p>Log daily calories, protein, carbs, fats, and water. See real-time progress toward personalized goals set by your coach.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon blue">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Workout Tracking</h3>
+                    <p>Log exercises, sets, reps, weight, and cardio minutes. Build a complete training history for every session.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon purple">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Progress Monitoring</h3>
+                    <p>Visualize your fitness journey with clean progress bars and weekly stat cards. Track trends over days and weeks.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon orange">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Coach Communication</h3>
+                    <p>Send questions and updates directly to your coach. Get personalized feedback through the client portal.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon teal">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Client Check-Ins</h3>
+                    <p>Submit weekly check-ins with body stats, mood, and energy levels so your coach can adjust your program.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon pink">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud-Based Tracking</h3>
+                    <p>All your data is securely stored in the cloud. Access your dashboard from any device, anywhere, anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         MACRO TRACKER SECTION
+         ============================================= -->
+    <section class="macro-tracker" id="macro-tracker">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Nutrition Dashboard</span>
+                <h2 class="section-title">Macro Tracker</h2>
+                <p class="section-desc">
+                    Log your daily nutrition and track progress toward your personalized macro goals.
+                    Data is saved locally and ready to connect to a cloud backend.
+                </p>
+            </div>
+
+            <!-- Macro Goal Cards (5 macros) -->
+            <div class="macro-cards" id="macroCards">
+                <!-- Calories -->
+                <div class="macro-card calories reveal">
+                    <div class="macro-card-header">
+                        <i class="fas fa-fire"></i>
+                        <span>Calories</span>
+                    </div>
+                    <div class="macro-value" id="calValue">1,847</div>
+                    <div class="macro-goal">Goal: <span id="calGoal">2,500</span></div>
+                    <div class="macro-bar-wrap">
+                        <div class="macro-bar calories-bar" id="calBar" style="width:74%"></div>
+                    </div>
+                    <div class="macro-pct" id="calPct">74%</div>
+                </div>
+                <!-- Protein -->
+                <div class="macro-card protein reveal reveal-delay-1">
+                    <div class="macro-card-header">
+                        <i class="fas fa-drumstick-bite"></i>
+                        <span>Protein</span>
+                    </div>
+                    <div class="macro-value" id="protValue">142g</div>
+                    <div class="macro-goal">Goal: <span id="protGoal">180g</span></div>
+                    <div class="macro-bar-wrap">
+                        <div class="macro-bar protein-bar" id="protBar" style="width:79%"></div>
+                    </div>
+                    <div class="macro-pct" id="protPct">79%</div>
+                </div>
+                <!-- Carbs -->
+                <div class="macro-card carbs reveal reveal-delay-2">
+                    <div class="macro-card-header">
+                        <i class="fas fa-bread-slice"></i>
+                        <span>Carbs</span>
+                    </div>
+                    <div class="macro-value" id="carbValue">210g</div>
+                    <div class="macro-goal">Goal: <span id="carbGoal">250g</span></div>
+                    <div class="macro-bar-wrap">
+                        <div class="macro-bar carbs-bar" id="carbBar" style="width:84%"></div>
+                    </div>
+                    <div class="macro-pct" id="carbPct">84%</div>
+                </div>
+                <!-- Fats -->
+                <div class="macro-card fats reveal reveal-delay-3">
+                    <div class="macro-card-header">
+                        <i class="fas fa-oil-can"></i>
+                        <span>Fats</span>
+                    </div>
+                    <div class="macro-value" id="fatValue">58g</div>
+                    <div class="macro-goal">Goal: <span id="fatGoal">80g</span></div>
+                    <div class="macro-bar-wrap">
+                        <div class="macro-bar fats-bar" id="fatBar" style="width:73%"></div>
+                    </div>
+                    <div class="macro-pct" id="fatPct">73%</div>
+                </div>
+                <!-- Water -->
+                <div class="macro-card water reveal reveal-delay-4">
+                    <div class="macro-card-header">
+                        <i class="fas fa-tint"></i>
+                        <span>Water</span>
+                    </div>
+                    <div class="macro-value" id="waterValue">6 cups</div>
+                    <div class="macro-goal">Goal: <span id="waterGoal">8 cups</span></div>
+                    <div class="macro-bar-wrap">
+                        <div class="macro-bar water-bar" id="waterBar" style="width:75%"></div>
+                    </div>
+                    <div class="macro-pct" id="waterPct">75%</div>
+                </div>
+            </div>
+
+            <!-- Log Macro Form -->
+            <div class="tracker-form-card reveal">
+                <h3><i class="fas fa-plus-circle"></i> Log Today's Macros</h3>
+                <p class="form-note">
+                    Sample values are shown above. Enter your real numbers below and click Update.
+                    Data saves to your browser and can connect to a cloud database via API.
+                </p>
+                <form class="macro-form" id="macroForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="inputCal">Calories</label>
+                            <input type="number" id="inputCal" placeholder="e.g. 2100" min="0" max="10000">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputProt">Protein (g)</label>
+                            <input type="number" id="inputProt" placeholder="e.g. 160" min="0" max="500">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCarb">Carbs (g)</label>
+                            <input type="number" id="inputCarb" placeholder="e.g. 230" min="0" max="1000">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputFat">Fats (g)</label>
+                            <input type="number" id="inputFat" placeholder="e.g. 70" min="0" max="500">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputWater">Water (cups)</label>
+                            <input type="number" id="inputWater" placeholder="e.g. 8" min="0" max="30">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Update Macros
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         HEALTH CALCULATOR SECTION
+         ============================================= -->
+    <section class="health-calculator" id="health-calculator">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Personalized Health</span>
+                <h2 class="section-title">Health Dashboard & Calculator</h2>
+                <p class="section-desc">
+                    Calculate your ideal calorie intake, BMI category, hydration goals, and personalized macros
+                    based on your body stats and activity level.
+                </p>
+            </div>
+
+            <div class="calc-layout">
+                <!-- Calculator Form -->
+                <div class="tracker-form-card reveal">
+                    <h3><i class="fas fa-calculator"></i> Your Stats</h3>
+                    <form id="calcForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bodyWeight">Weight</label>
+                                <input type="number" id="bodyWeight" step="0.1" min="0" value="70" placeholder="e.g. 70">
+                            </div>
+                            <div class="form-group">
+                                <label for="weightUnit">Unit</label>
+                                <select id="weightUnit">
+                                    <option value="kg">kg</option>
+                                    <option value="lb">lb</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="heightCm">Height (cm)</label>
+                                <input type="number" id="heightCm" step="0.1" min="0" value="175" placeholder="e.g. 175">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="calcAge">Age</label>
+                                <input type="number" id="calcAge" min="15" max="100" value="28" placeholder="e.g. 28">
+                            </div>
+                            <div class="form-group">
+                                <label for="calcSex">Sex</label>
+                                <select id="calcSex">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="activityLevel">Activity Level</label>
+                                <select id="activityLevel">
+                                    <option value="1.2">Sedentary</option>
+                                    <option value="1.375">Light</option>
+                                    <option value="1.55" selected>Moderate</option>
+                                    <option value="1.725">Active</option>
+                                    <option value="1.9">Very Active</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="calcGoal">Goal</label>
+                                <select id="calcGoal">
+                                    <option value="0.85">Lose (calorie deficit)</option>
+                                    <option value="1.0" selected>Maintain</option>
+                                    <option value="1.15">Gain (surplus)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="proteinPerKg">Protein (g/kg)</label>
+                                <input type="number" id="proteinPerKg" step="0.1" min="0" value="2.0">
+                            </div>
+                            <div class="form-group">
+                                <label for="fatPerKg">Fat (g/kg)</label>
+                                <input type="number" id="fatPerKg" step="0.1" min="0" value="0.9">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-chart-bar"></i> Calculate
+                        </button>
+                        <p class="form-note" style="margin-top:12px; margin-bottom:0;">Results are estimates using the Mifflin-St Jeor equation.</p>
+                    </form>
+                </div>
+
+                <!-- Results Dashboard -->
+                <div class="calc-results-card reveal reveal-delay-2">
+                    <h3><i class="fas fa-heartbeat"></i> Health Dashboard</h3>
+
+                    <div class="calc-section">
+                        <h4>BMI Status</h4>
+                        <div class="bmi-display">
+                            <div class="bmi-number" id="calcBMI">--</div>
+                            <div class="bmi-category" id="bmiCategory">Enter your stats</div>
+                            <div class="bmi-indicator" id="bmiIndicator"></div>
+                        </div>
+                    </div>
+
+                    <div class="calc-section">
+                        <h4>Daily Recommendations</h4>
+                        <div class="calc-stats-grid">
+                            <div class="calc-stat"><span>Calorie Target</span><strong id="calcCalories">--</strong></div>
+                            <div class="calc-stat"><span>Goal Adjustment</span><strong id="goalAdjustment">--</strong></div>
+                            <div class="calc-stat"><span>Water Intake</span><strong id="calcWaterIntake">--</strong></div>
+                            <div class="calc-stat"><span>Goal Status</span><strong id="goalStatus" class="accent">--</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="calc-section">
+                        <h4>Macro Targets</h4>
+                        <div class="calc-stats-grid">
+                            <div class="calc-stat"><span>Protein</span><strong id="calcProtein">--</strong></div>
+                            <div class="calc-stat"><span>Carbs</span><strong id="calcCarbs">--</strong></div>
+                            <div class="calc-stat"><span>Fats</span><strong id="calcFats">--</strong></div>
+                            <div class="calc-stat"><span>TDEE</span><strong id="calcTDEE">--</strong></div>
+                        </div>
+                    </div>
+
+                    <p class="form-note" style="margin-bottom:0; text-align:center;">Values rounded for simplicity. This is a demo calculator.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         MEAL PLANNER SECTION
+         ============================================= -->
+    <section class="meal-planner" id="meal-planner">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Daily Nutrition Plan</span>
+                <h2 class="section-title">Meal Planner</h2>
+                <p class="section-desc">
+                    Track your meals throughout the day and monitor macro targets in real-time.
+                </p>
+            </div>
+
+            <!-- USDA Food Search -->
+            <div class="food-search-card reveal">
+                <h3><i class="fas fa-search"></i> Search Foods (USDA Database)</h3>
+                <p class="form-note">Look up real nutrition data from two databases. Toggle your source below.</p>
+                <div class="source-toggle">
+                    <button class="source-btn active" data-source="usda"><i class="fas fa-landmark"></i> USDA</button>
+                    <button class="source-btn" data-source="openfoodfacts"><i class="fas fa-globe"></i> Open Food Facts</button>
+                </div>
+                <form id="foodSearchForm" class="food-search-form">
+                    <div class="form-group" style="flex:1;">
+                        <input type="text" id="foodSearchInput" placeholder="e.g. chicken breast, oatmeal, banana" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="foodSearchBtn">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                    <button type="button" class="btn btn-outline" id="scanBarcodeBtn">
+                        <i class="fas fa-barcode"></i> Scan Barcode
+                    </button>
+                    <button type="button" class="btn btn-outline" id="scanLabelBtn">
+                        <i class="fas fa-camera"></i> Scan Label
+                    </button>
+                </form>
+                <!-- Barcode Scanner -->
+                <div id="barcodeScannerWrap" class="barcode-scanner-wrap" style="display:none;">
+                    <div class="scanner-header">
+                        <span><i class="fas fa-camera"></i> Point camera at a barcode</span>
+                        <button type="button" class="btn btn-ghost btn-sm" id="closeScannerBtn"><i class="fas fa-times"></i> Close</button>
+                    </div>
+                    <div id="barcodeReader"></div>
+                    <div id="scannerStatus" class="scanner-status">
+                        <div class="scanner-status-icon"><i class="fas fa-crosshairs"></i></div>
+                        <div class="scanner-status-text">Align barcode in frame</div>
+                        <div class="scanner-lock-bar"><div class="scanner-lock-fill" id="scannerLockFill"></div></div>
+                    </div>
+                </div>
+                <!-- Nutrition Label Scanner -->
+                <div id="labelScannerWrap" class="barcode-scanner-wrap" style="display:none;">
+                    <div class="scanner-header">
+                        <span><i class="fas fa-clipboard-list"></i> Capture Nutrition Facts label</span>
+                        <button type="button" class="btn btn-ghost btn-sm" id="closeLabelBtn"><i class="fas fa-times"></i> Close</button>
+                    </div>
+                    <div class="label-capture-area">
+                        <input type="file" id="labelFileInput" accept="image/*" capture="environment" style="display:none;">
+                        <button type="button" class="btn btn-primary" id="takeLabelPhoto">
+                            <i class="fas fa-camera"></i> Take Photo of Nutrition Label
+                        </button>
+                        <p class="form-note" style="margin-top:12px; margin-bottom:0; text-align:center;">
+                            Best results: hold steady, good lighting, flat surface.
+                        </p>
+                    </div>
+                    <!-- OCR Progress -->
+                    <div id="ocrProgress" style="display:none;">
+                        <div class="food-search-status">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            Reading nutrition label...<br>
+                            <small id="ocrProgressText">Initializing OCR...</small>
+                        </div>
+                    </div>
+                    <!-- Preview + Editable Results -->
+                    <div id="labelResultArea" style="display:none;">
+                        <div class="label-result-grid">
+                            <div class="label-preview">
+                                <img id="labelPreviewImg" alt="Captured label">
+                            </div>
+                            <div class="label-values">
+                                <h4><i class="fas fa-edit"></i> Extracted Values <span class="form-note" style="display:inline; margin:0;">(edit if needed)</span></h4>
+                                <div class="label-fields">
+                                    <div class="form-group"><label for="labelCal">Calories</label><input type="number" id="labelCal" min="0" placeholder="0"></div>
+                                    <div class="form-group"><label for="labelProt">Protein (g)</label><input type="number" id="labelProt" min="0" placeholder="0"></div>
+                                    <div class="form-group"><label for="labelCarb">Carbs (g)</label><input type="number" id="labelCarb" min="0" placeholder="0"></div>
+                                    <div class="form-group"><label for="labelFat">Total Fat (g)</label><input type="number" id="labelFat" min="0" placeholder="0"></div>
+                                    <div class="form-group"><label for="labelServing">Serving Size</label><input type="text" id="labelServing" placeholder="e.g. 1 cup (240ml)"></div>
+                                    <div class="form-group"><label for="labelName">Product Name</label><input type="text" id="labelName" placeholder="e.g. HEB Whole Milk"></div>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="saveLabelResult" style="margin-top:12px;">
+                                    <i class="fas fa-check"></i> Show Nutrition Card
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="foodSearchResults" class="food-results"></div>
+            </div>
+
+            <div class="meals-grid">
+                <div class="meal-card reveal">
+                    <div class="meal-header">
+                        <h3><i class="fas fa-sun"></i> Breakfast</h3>
+                        <span class="meal-time">7:30 AM</span>
+                    </div>
+                    <div class="meal-items">
+                        <div class="meal-item">
+                            <span class="item-name">Oatmeal with berries</span>
+                            <span class="item-macro">45g carbs &middot; 8g protein &middot; 4g fat</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="item-name">Greek yogurt</span>
+                            <span class="item-macro">12g carbs &middot; 15g protein &middot; 3g fat</span>
+                        </div>
+                    </div>
+                    <div class="meal-subtotal">
+                        <span>Subtotal</span>
+                        <strong>57g C &middot; 23g P &middot; 7g F</strong>
+                    </div>
+                </div>
+
+                <div class="meal-card reveal reveal-delay-1">
+                    <div class="meal-header">
+                        <h3><i class="fas fa-cloud-sun"></i> Lunch</h3>
+                        <span class="meal-time">12:30 PM</span>
+                    </div>
+                    <div class="meal-items">
+                        <div class="meal-item">
+                            <span class="item-name">Grilled chicken breast</span>
+                            <span class="item-macro">0g carbs &middot; 45g protein &middot; 4g fat</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="item-name">Brown rice & veggies</span>
+                            <span class="item-macro">65g carbs &middot; 6g protein &middot; 2g fat</span>
+                        </div>
+                    </div>
+                    <div class="meal-subtotal">
+                        <span>Subtotal</span>
+                        <strong>65g C &middot; 51g P &middot; 6g F</strong>
+                    </div>
+                </div>
+
+                <div class="meal-card reveal reveal-delay-2">
+                    <div class="meal-header">
+                        <h3><i class="fas fa-moon"></i> Dinner</h3>
+                        <span class="meal-time">6:00 PM</span>
+                    </div>
+                    <div class="meal-items">
+                        <div class="meal-item">
+                            <span class="item-name">Salmon fillet</span>
+                            <span class="item-macro">0g carbs &middot; 35g protein &middot; 16g fat</span>
+                        </div>
+                        <div class="meal-item">
+                            <span class="item-name">Sweet potato & salad</span>
+                            <span class="item-macro">48g carbs &middot; 4g protein &middot; 3g fat</span>
+                        </div>
+                    </div>
+                    <div class="meal-subtotal">
+                        <span>Subtotal</span>
+                        <strong>48g C &middot; 39g P &middot; 19g F</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Macro Totals -->
+            <div class="macro-totals reveal">
+                <div class="totals-row">
+                    <span class="totals-label">Daily Total</span>
+                    <div class="totals-values">
+                        <div class="total-item"><span>Carbs</span><strong>170g</strong></div>
+                        <div class="total-item"><span>Protein</span><strong>113g</strong></div>
+                        <div class="total-item"><span>Fats</span><strong>32g</strong></div>
+                        <div class="total-item"><span>Calories</span><strong>1,420</strong></div>
+                    </div>
+                </div>
+                <div class="totals-row totals-target">
+                    <span class="totals-label">Daily Target</span>
+                    <div class="totals-values">
+                        <div class="total-item"><span>Carbs</span><strong>250g</strong></div>
+                        <div class="total-item"><span>Protein</span><strong>180g</strong></div>
+                        <div class="total-item"><span>Fats</span><strong>80g</strong></div>
+                        <div class="total-item"><span>Calories</span><strong>2,500</strong></div>
+                    </div>
+                </div>
+                <div class="totals-row totals-remaining">
+                    <span class="totals-label">Remaining</span>
+                    <div class="totals-values">
+                        <div class="total-item"><span>Carbs</span><strong class="accent">80g</strong></div>
+                        <div class="total-item"><span>Protein</span><strong class="accent">67g</strong></div>
+                        <div class="total-item"><span>Fats</span><strong class="accent">48g</strong></div>
+                        <div class="total-item"><span>Calories</span><strong class="accent">1,080</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         WORKOUT TRACKER SECTION
+         ============================================= -->
+    <section class="workout-tracker" id="workout-tracker">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Training Log</span>
+                <h2 class="section-title">Workout Tracker</h2>
+                <p class="section-desc">
+                    Log every exercise, set, rep, and cardio session.
+                    Track your strength and endurance gains over time.
+                </p>
+            </div>
+
+            <!-- Today's Plan Card -->
+            <div class="todays-plan-card reveal">
+                <div class="plan-header">
+                    <div>
+                        <h3><i class="fas fa-calendar-day"></i> Today's Plan</h3>
+                        <p class="plan-date" id="todayDate"></p>
+                    </div>
+                    <span class="plan-badge">Push Day</span>
+                </div>
+                <div class="plan-summary">
+                    <div class="plan-stat"><i class="fas fa-dumbbell"></i> <span id="planExercises">0</span> Exercises</div>
+                    <div class="plan-stat"><i class="fas fa-layer-group"></i> <span id="planSets">0</span> Sets</div>
+                    <div class="plan-stat"><i class="fas fa-running"></i> <span id="planCardio">0</span> min Cardio</div>
+                    <div class="plan-stat"><i class="fas fa-clock"></i> ~<span id="planTime">0</span> min Total</div>
+                </div>
+            </div>
+
+            <!-- Workout Log Table -->
+            <div class="workout-table-card reveal">
+                <div class="table-header">
+                    <h3>Workout Log</h3>
+                    <button class="btn btn-primary btn-sm" id="addWorkoutBtn">
+                        <i class="fas fa-plus"></i> Add Exercise
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="workout-table" id="workoutTable">
+                        <thead>
+                            <tr>
+                                <th>Exercise</th>
+                                <th>Sets</th>
+                                <th>Reps</th>
+                                <th>Weight (lbs)</th>
+                                <th>Cardio (min)</th>
+                                <th>Notes</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody id="workoutTableBody">
+                            <!-- Populated by main.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Add Exercise Form (hidden by default) -->
+            <div class="tracker-form-card" id="workoutFormCard" style="display:none;">
+                <h3><i class="fas fa-plus-circle"></i> Add Exercise</h3>
+                <form id="addExerciseForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="exName">Exercise Name</label>
+                            <input type="text" id="exName" placeholder="e.g. Bench Press" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exSets">Sets</label>
+                            <input type="number" id="exSets" placeholder="e.g. 4" min="1" max="20">
+                        </div>
+                        <div class="form-group">
+                            <label for="exReps">Reps</label>
+                            <input type="number" id="exReps" placeholder="e.g. 8" min="1" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="exWeight">Weight (lbs)</label>
+                            <input type="number" id="exWeight" placeholder="e.g. 185" min="0" max="2000">
+                        </div>
+                        <div class="form-group">
+                            <label for="exCardio">Cardio (min)</label>
+                            <input type="number" id="exCardio" placeholder="e.g. 20" min="0" max="300">
+                        </div>
+                        <div class="form-group form-group-wide">
+                            <label for="exNotes">Notes</label>
+                            <input type="text" id="exNotes" placeholder="e.g. Felt strong today, slow negatives">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add to Log
+                        </button>
+                        <button type="button" class="btn btn-ghost" id="cancelWorkoutBtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Weekly Progress Cards (calculated from workout log) -->
+            <div class="progress-cards">
+                <div class="progress-card reveal">
+                    <div class="progress-card-icon green"><i class="fas fa-trophy"></i></div>
+                    <div class="progress-card-content">
+                        <div class="progress-card-label">Exercises Logged</div>
+                        <div class="progress-card-value" id="statExercises">0</div>
+                    </div>
+                </div>
+                <div class="progress-card reveal reveal-delay-1">
+                    <div class="progress-card-icon blue"><i class="fas fa-weight"></i></div>
+                    <div class="progress-card-content">
+                        <div class="progress-card-label">Total Volume</div>
+                        <div class="progress-card-value" id="statVolume">0 lbs</div>
+                    </div>
+                </div>
+                <div class="progress-card reveal reveal-delay-2">
+                    <div class="progress-card-icon orange"><i class="fas fa-fire-alt"></i></div>
+                    <div class="progress-card-content">
+                        <div class="progress-card-label">Est. Calories Burned</div>
+                        <div class="progress-card-value" id="statCalories">0 kcal</div>
+                    </div>
+                </div>
+                <div class="progress-card reveal reveal-delay-3">
+                    <div class="progress-card-icon purple"><i class="fas fa-road"></i></div>
+                    <div class="progress-card-content">
+                        <div class="progress-card-label">Cardio Minutes</div>
+                        <div class="progress-card-value" id="statCardio">0 min</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CONTACT / COACH COMMUNICATION SECTION
+         ============================================= -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Left: Info -->
+                <div class="contact-info reveal">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">Contact Your Coach</h2>
+                    <p>
+                        Have a question about your macros? Need to adjust your program?
+                        Your coach is here to help. Send a message and expect a response within 24 hours.
+                    </p>
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Personalized program adjustments</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Macro goal recalibration</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Workout plan modifications</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Weekly check-in submissions</span>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Nutrition and supplement advice</span>
+                        </div>
+                    </div>
+                    <!-- Coach Profile Card -->
+                    <div class="coach-profile">
+                        <div class="coach-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="coach-info">
+                            <div class="coach-name">Coach MacroFit</div>
+                            <div class="coach-title">NASM Certified Personal Trainer</div>
+                            <div class="coach-status">
+                                <span class="status-dot"></span> Available for new clients
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="contact-form-card reveal reveal-delay-2">
+                    <h3>Send a Message</h3>
+                    <!-- Form (structured for future API connection) -->
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="clientName">Your Name</label>
+                            <input type="text" id="clientName" placeholder="Jane Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientEmail">Email Address</label>
+                            <input type="email" id="clientEmail" placeholder="jane@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fitnessGoal">Fitness Goal</label>
+                            <select id="fitnessGoal" required>
+                                <option value="">Select your goal...</option>
+                                <option value="weight-loss">Weight Loss</option>
+                                <option value="muscle-gain">Muscle Gain</option>
+                                <option value="recomposition">Body Recomposition</option>
+                                <option value="endurance">Improve Endurance</option>
+                                <option value="maintenance">Maintenance</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientMessage">Message to Coach</label>
+                            <textarea id="clientMessage" rows="5" placeholder="Tell your coach about your progress, questions, or goals..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                        <p class="form-note" style="text-align:center; margin-top:12px;">
+                            * This form connects to a serverless API. Response within 24 hours.
+                        </p>
+                    </form>
+                    <!-- Success state (shown after submit) -->
+                    <div class="success-message" id="contactSuccess" style="display:none;">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Message Sent!</h4>
+                        <p>Your coach will respond within 24 hours. Keep crushing your goals!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         VISITOR COUNTER SECTION
+         Connects to Azure Functions + Cosmos DB
+         ============================================= -->
+    <section class="visitor-counter-section">
+        <div class="container">
+            <div class="counter-card reveal">
+                <div class="counter-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="counter-content">
+                    <div class="counter-label">Total Site Visitors</div>
+                    <!-- Counter value populated by counter.js -->
+                    <div class="counter-value" id="visitorCount">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <div class="counter-sub" id="counterSub">
+                        Powered by Azure Functions + Cosmos DB
+                    </div>
+                </div>
+                <div class="counter-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>
+                        Each page visit calls a Python serverless function that increments
+                        and stores the count in a NoSQL cloud database.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         TESTIMONIALS SECTION
+         ============================================= -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Client Results</span>
+                <h2 class="section-title">What Our Clients Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"MacroFit Coach completely changed how I approach nutrition. I've lost 25 pounds in 4 months and feel stronger than ever."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div>
+                            <div class="author-name">Jake D.</div>
+                            <div class="author-goal">Weight Loss &mdash; 25 lbs lost</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card featured reveal reveal-delay-2">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"The macro tracking dashboard is incredibly easy to use. My coach adjusts my macros every week based on my check-ins. It's like having a personal nutritionist on call."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SR</div>
+                        <div>
+                            <div class="author-name">Sarah R.</div>
+                            <div class="author-goal">Muscle Gain &mdash; +8 lbs lean mass</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-4">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"Logging workouts takes 2 minutes. The progress cards keep me motivated. Best coaching platform I've ever used."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MT</div>
+                        <div>
+                            <div class="author-name">Marcus T.</div>
+                            <div class="author-goal">Recomposition &mdash; 6 month client</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo" style="margin-bottom:16px;">
+                        <img src="assets/logo.png" alt="MacroFit Coach" class="nav-logo-img">
+                        <span class="logo-text">MacroFit<span class="accent">Coach</span></span>
+                    </div>
+                    <p>
+                        Your all-in-one cloud-powered fitness coaching platform.
+                        Track macros, log workouts, and stay connected with your coach.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#macro-tracker">Macro Tracker</a></li>
+                        <li><a href="#health-calculator">Health Calculator</a></li>
+                        <li><a href="#meal-planner">Meal Planner</a></li>
+                        <li><a href="#workout-tracker">Workout Tracker</a></li>
+                        <li><a href="#contact">Contact Coach</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Project</h4>
+                    <ul>
+                        <li><a href="team.html">Team Info</a></li>
+                        <li><a href="blog.html">Blog / Write-Up</a></li>
+                        <li><a href="https://github.com/Team11-F-it-services-app/MicroFit" target="_blank" rel="noopener">GitHub Repo</a></li>
+                        <li><a href="blog.html#architecture">Architecture Diagram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Cloud Stack</h4>
+                    <ul>
+                        <li><span>Azure Static Web Apps</span></li>
+                        <li><span>Azure Functions (Python)</span></li>
+                        <li><span>Cosmos DB (NoSQL)</span></li>
+                        <li><span>GitHub Actions CI/CD</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MacroFit Coach &mdash; Built for Cloud Computing Capstone Project.</p>
+                <p>Azure &bull; Terraform &bull; GitHub Actions &bull; Python</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts (counter first, then main, then auth UI) -->
+    <script src="js/counter.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        /* Nav auth state */
+        (function() {
+            const user = JSON.parse(localStorage.getItem('mfc_currentUser') || 'null');
+            const getStartedBtn = document.getElementById('navGetStarted');
+            const navUser = document.getElementById('navUser');
+            const navUserName = document.getElementById('navUserName');
+            const navLogout = document.getElementById('navLogout');
+
+            if (user && user.displayName) {
+                if (getStartedBtn) getStartedBtn.style.display = 'none';
+                if (navUser) navUser.style.display = 'flex';
+                if (navUserName) navUserName.textContent = user.displayName;
+            } else {
+                if (getStartedBtn) getStartedBtn.style.display = '';
+                if (navUser) navUser.style.display = 'none';
+            }
+
+            navLogout?.addEventListener('click', () => {
+                localStorage.removeItem('mfc_currentUser');
+                window.location.reload();
+            });
+        })();
+    </script>
+</body>
+</html>

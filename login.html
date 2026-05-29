@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | MacroFit Coach</title>
+    <meta name="description" content="Sign in to your MacroFit Coach account.">
+    <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="auth-page">
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="MacroFit Coach" class="nav-logo-img">
+                <span class="logo-text">MacroFit<span class="accent">Coach</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#macro-tracker">Macros</a></li>
+                <li><a href="index.html#health-calculator">Calculator</a></li>
+                <li><a href="index.html#meal-planner">Meals</a></li>
+                <li><a href="index.html#workout-tracker">Workouts</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         LOGIN FORM
+         ============================================= -->
+    <section class="auth-section">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="assets/logo.png" alt="MacroFit Coach" style="width:72px; height:72px; border-radius:16px;">
+                <h1>Welcome Back</h1>
+                <p>Sign in to your MacroFit Coach account</p>
+            </div>
+
+            <div class="auth-message error" id="errorMessage"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+
+            <div class="auth-divider"><span>or continue with</span></div>
+
+            <div class="social-buttons">
+                <button type="button" class="btn btn-outline" id="googleLoginBtn">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button type="button" class="btn btn-outline" id="githubLoginBtn">
+                    <i class="fab fa-github"></i> GitHub
+                </button>
+            </div>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="register.html">Sign up</a></p>
+                <p style="margin-top:12px; font-size:13px;"><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         PAGE SCRIPTS
+         ============================================= -->
+    <script>
+        'use strict';
+
+        /* Theme toggle */
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon   = document.getElementById('themeIcon');
+        const htmlEl      = document.documentElement;
+
+        function applyTheme(theme) {
+            htmlEl.setAttribute('data-theme', theme);
+            if (themeIcon) themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        applyTheme(localStorage.getItem('mfc_theme') || 'dark');
+
+        themeToggle?.addEventListener('click', () => {
+            const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('mfc_theme', next);
+            applyTheme(next);
+        });
+
+        /* Mobile hamburger */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('navLinks');
+        hamburger?.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+        /* ============================================================
+           LOGIN — localStorage demo auth
+           In production, replace with Azure Functions API calls.
+           WARNING: Passwords are stored in plain text in localStorage.
+           This is for demo/capstone purposes ONLY.
+           ============================================================ */
+        const loginForm    = document.getElementById('loginForm');
+        const loginEmail   = document.getElementById('loginEmail');
+        const loginPassword = document.getElementById('loginPassword');
+        const loginBtn     = document.getElementById('loginBtn');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // If already logged in, redirect
+        if (localStorage.getItem('mfc_currentUser')) {
+            window.location.href = 'index.html';
+        }
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideMessage(errorMessage);
+
+            const email    = loginEmail.value.trim();
+            const password = loginPassword.value;
+
+            if (!email || !password) {
+                showMessage(errorMessage, 'Please fill in all fields.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('mfc_users') || '[]');
+            const user  = users.find(u => u.email === email);
+
+            if (!user) {
+                showMessage(errorMessage, 'Email not found. Please register first.');
+                return;
+            }
+
+            if (user.password !== password) {
+                showMessage(errorMessage, 'Incorrect password. Please try again.');
+                return;
+            }
+
+            // Set session
+            const session = {
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                loginTime: new Date().toISOString()
+            };
+            localStorage.setItem('mfc_currentUser', JSON.stringify(session));
+
+            window.location.href = 'index.html';
+        });
+
+        /* Social login (demo — generates a placeholder session) */
+        document.getElementById('googleLoginBtn').addEventListener('click', () => socialLogin('Google'));
+        document.getElementById('githubLoginBtn').addEventListener('click', () => socialLogin('GitHub'));
+
+        function socialLogin(provider) {
+            const session = {
+                uid: provider.toLowerCase() + '-' + Date.now(),
+                email: provider.toLowerCase() + '-user@demo.local',
+                displayName: provider + ' User (Demo)',
+                provider: provider,
+                loginTime: new Date().toISOString()
+            };
+            localStorage.setItem('mfc_currentUser', JSON.stringify(session));
+            window.location.href = 'index.html';
+        }
+
+        /* Helpers */
+        function showMessage(el, text) {
+            el.textContent = text;
+            el.classList.add('show');
+        }
+        function hideMessage(el) {
+            el.classList.remove('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Info | MacroFit Coach</title>
+    <meta name="description" content="Meet the team behind MacroFit Coach — a cloud capstone project built by students.">
+    <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="MacroFit Coach" class="nav-logo-img">
+                <span class="logo-text">MacroFit<span class="accent">Coach</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#macro-tracker">Macros</a></li>
+                <li><a href="index.html#health-calculator">Calculator</a></li>
+                <li><a href="index.html#meal-planner">Meals</a></li>
+                <li><a href="index.html#workout-tracker">Workouts</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="team.html" style="color:var(--accent-green);">Team</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </button>
+                <a href="register.html" class="btn btn-primary btn-sm" id="navGetStarted">Get Started</a>
+                <div class="nav-user" id="navUser" style="display:none;">
+                    <span class="nav-user-name" id="navUserName"></span>
+                    <button class="btn btn-ghost btn-sm" id="navLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE HERO
+         ============================================= -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="section-tag">Cloud Capstone Project</span>
+            <h1>Meet the Team</h1>
+            <p>
+                The students behind MacroFit Coach &mdash; designing, building, and deploying
+                a real-world cloud fitness platform from scratch.
+            </p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         TEAM MEMBERS
+         ============================================= -->
+    <section class="team-section">
+        <div class="container">
+            <div class="team-grid">
+
+                <!-- ---- Team Member 1: Cloud Architect / Team Lead ---- -->
+                <div class="team-card reveal">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <div class="team-name">Sam</div>
+                    <div class="team-role">Cloud Architect &amp; Team Lead</div>
+                    <p class="team-desc">
+                        Responsible for planning the overall cloud architecture, selecting Azure services,
+                        managing costs, and leading the team through all four capstone milestones.
+                    </p>
+                    <div class="team-responsibilities">
+                        <h4>Key Responsibilities</h4>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Cloud architecture design and documentation</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Azure cost management and budget alerts</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Architecture diagram creation</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> IAM roles and security policies</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Weekly presentation lead</div>
+                    </div>
+                    <a href="https://github.com/sam29quiroz" target="_blank" rel="noopener noreferrer" class="github-btn">
+                        <i class="fab fa-github"></i> GitHub Profile
+                    </a>
+                </div>
+
+                <!-- ---- Team Member 2: App & Front-End Specialist ---- -->
+                <div class="team-card reveal reveal-delay-1">
+                    <div class="team-avatar">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="team-name">Dennis</div>
+                    <div class="team-role">App &amp; Front-End Specialist</div>
+                    <p class="team-desc">
+                        Built the MacroFit Coach landing page, dashboard UI, macro tracker,
+                        workout logger, and all JavaScript interactions. Made the site responsive
+                        for phones, tablets, and desktops.
+                    </p>
+                    <div class="team-responsibilities">
+                        <h4>Key Responsibilities</h4>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> HTML, CSS, and JavaScript development</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Landing page and dashboard design</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Visitor counter frontend integration</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Responsive mobile-first design</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Team Info and Blog pages</div>
+                    </div>
+                    <a href="https://github.com/denunez735-collab" target="_blank" rel="noopener noreferrer" class="github-btn">
+                        <i class="fab fa-github"></i> GitHub Profile
+                    </a>
+                </div>
+
+                <!-- ---- Team Member 3: DevOps & Backend Engineer ---- -->
+                <div class="team-card reveal reveal-delay-2">
+                    <div class="team-avatar">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="team-name">Sam &amp; Dennis</div>
+                    <div class="team-role">DevOps &amp; Backend Engineer</div>
+                    <p class="team-desc">
+                        Built the Python serverless API for the visitor counter using Azure Functions,
+                        connected it to Cosmos DB, wrote the Terraform IaC templates, and configured
+                        the GitHub Actions CI/CD pipeline and Azure Monitor logging.
+                    </p>
+                    <div class="team-responsibilities">
+                        <h4>Key Responsibilities</h4>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Python Azure Functions API</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Cosmos DB NoSQL database setup</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Terraform IaC templates</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> GitHub Actions CI/CD pipeline</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Azure Monitor, App Insights, DNS, HTTPS</div>
+                    </div>
+                    <a href="https://github.com/Team11-F-it-services-app" target="_blank" rel="noopener noreferrer" class="github-btn">
+                        <i class="fab fa-github"></i> GitHub Profile
+                    </a>
+                </div>
+
+                <!-- ---- Team Role 4: Security & Network ---- -->
+                <div class="team-card reveal reveal-delay-3">
+                    <div class="team-avatar">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="team-name">Sam &amp; Dennis</div>
+                    <div class="team-role">Security &amp; Network</div>
+                    <p class="team-desc">
+                        Responsible for securing the cloud infrastructure, configuring network rules,
+                        managing IAM policies, and ensuring the platform meets security best practices
+                        across all Azure services.
+                    </p>
+                    <div class="team-responsibilities">
+                        <h4>Key Responsibilities</h4>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Azure IAM roles and access policies</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Network security groups and firewall rules</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> HTTPS/TLS and DNS configuration</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> CORS and API security headers</div>
+                        <div class="responsibility-item"><i class="fas fa-check"></i> Security auditing and compliance checks</div>
+                    </div>
+                    <a href="https://github.com/Team11-F-it-services-app" target="_blank" rel="noopener noreferrer" class="github-btn">
+                        <i class="fab fa-github"></i> GitHub Profile
+                    </a>
+                </div>
+
+            </div><!-- /.team-grid -->
+
+            <!-- ---- Project Repository Card ---- -->
+            <div style="margin-top: 72px; text-align: center;">
+                <div class="tracker-form-card" style="max-width: 620px; margin: 0 auto;">
+                    <h3 style="justify-content:center; margin-bottom: 8px;">
+                        <i class="fab fa-github"></i> Project Repository
+                    </h3>
+                    <p class="form-note" style="text-align: center;">
+                        All source code, IaC templates, and CI/CD workflows are publicly available on GitHub.
+                    </p>
+                    <div style="display:flex; gap:14px; justify-content:center; margin-top:20px; flex-wrap:wrap;">
+                        <a href="https://github.com/Team11-F-it-services-app/MicroFit" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                        <a href="blog.html" class="btn btn-outline">
+                            <i class="fas fa-book-open"></i> Read Blog Post
+                        </a>
+                        <a href="index.html" class="btn btn-ghost">
+                            <i class="fas fa-arrow-left"></i> Back to Site
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.container -->
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2026 MacroFit Coach &mdash; Cloud Computing Capstone Project</p>
+                <p>
+                    <a href="index.html" style="color:var(--accent-green);">&#8592; Back to Home</a>
+                    &nbsp;&bull;&nbsp;
+                    <a href="blog.html" style="color:var(--accent-green);">Read the Blog</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =============================================
+         PAGE SCRIPTS
+         (Minimal — theme toggle, hamburger, scroll reveal)
+         ============================================= -->
+    <script>
+        'use strict';
+
+        /* Theme toggle */
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon   = document.getElementById('themeIcon');
+        const htmlEl      = document.documentElement;
+
+        function applyTheme(theme) {
+            htmlEl.setAttribute('data-theme', theme);
+            if (themeIcon) {
+                themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+
+        applyTheme(localStorage.getItem('mfc_theme') || 'dark');
+
+        themeToggle?.addEventListener('click', () => {
+            const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('mfc_theme', next);
+            applyTheme(next);
+        });
+
+        /* Mobile hamburger */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('navLinks');
+        hamburger?.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+        /* Scroll reveal */
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+        /* Nav auth state */
+        (function() {
+            const user = JSON.parse(localStorage.getItem('mfc_currentUser') || 'null');
+            const getStartedBtn = document.getElementById('navGetStarted');
+            const navUser = document.getElementById('navUser');
+            const navUserName = document.getElementById('navUserName');
+            const navLogout = document.getElementById('navLogout');
+            if (user && user.displayName) {
+                if (getStartedBtn) getStartedBtn.style.display = 'none';
+                if (navUser) navUser.style.display = 'flex';
+                if (navUserName) navUserName.textContent = user.displayName;
+            }
+            navLogout?.addEventListener('click', () => {
+                localStorage.removeItem('mfc_currentUser');
+                window.location.reload();
+            });
+        })();
+    </script>
+</body>
+</html>

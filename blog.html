@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog &amp; Write-Up | MacroFit Coach</title>
+    <meta name="description" content="MacroFit Coach project blog — cloud services, architecture, IaC, CI/CD, visitor counter, and lessons learned.">
+    <link rel="icon" href="assets/logo.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="MacroFit Coach" class="nav-logo-img">
+                <span class="logo-text">MacroFit<span class="accent">Coach</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#macro-tracker">Macros</a></li>
+                <li><a href="index.html#health-calculator">Calculator</a></li>
+                <li><a href="index.html#meal-planner">Meals</a></li>
+                <li><a href="index.html#workout-tracker">Workouts</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="blog.html" style="color:var(--accent-green);">Blog</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </button>
+                <a href="register.html" class="btn btn-primary btn-sm" id="navGetStarted">Get Started</a>
+                <div class="nav-user" id="navUser" style="display:none;">
+                    <span class="nav-user-name" id="navUserName"></span>
+                    <button class="btn btn-ghost btn-sm" id="navLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE HERO
+         ============================================= -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="section-tag">Project Write-Up</span>
+            <h1>MacroFit Coach &mdash; Blog</h1>
+            <p>
+                How we designed, built, and deployed a cloud-based fitness coaching platform
+                as a 4-week capstone project using Azure, Python, Terraform, and GitHub Actions.
+            </p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         BLOG CONTENT
+         ============================================= -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-container">
+
+                <!-- Meta info -->
+                <div class="blog-meta">
+                    <div class="blog-meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Published: May 2026</span>
+                    </div>
+                    <div class="blog-meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Team 11 &mdash; Cloud Computing Capstone</span>
+                    </div>
+                    <div class="blog-meta-item">
+                        <i class="fas fa-cloud"></i>
+                        <span>Platform: Microsoft Azure</span>
+                    </div>
+                    <div class="blog-meta-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/Team11-F-it-services-app/MicroFit" target="_blank" rel="noopener" style="color:var(--accent-green);">View Repository</a>
+                    </div>
+                </div>
+
+                <!-- ========================
+                     BLOG ARTICLE
+                     ======================== -->
+                <div class="blog-content">
+
+                    <!-- 1. Project Purpose -->
+                    <h2><i class="fas fa-bullseye"></i> 1. Project Purpose</h2>
+                    <p>
+                        MacroFit Coach is a cloud-based fitness coaching web application built as the
+                        final capstone project for our Cloud Computing course. The goal was to design
+                        and deploy a real-world web application that demonstrates practical cloud skills
+                        including static hosting, serverless APIs, NoSQL databases, Infrastructure as Code,
+                        CI/CD automation, DNS, HTTPS, monitoring, and security.
+                    </p>
+                    <p>
+                        Rather than building a generic demo, we chose a fitness coaching platform because
+                        it gave us meaningful sections to build &mdash; a macro nutrition tracker, a workout
+                        log, and a coach communication portal &mdash; all backed by cloud infrastructure.
+                        This made the project feel like a real product and gave us more to talk about
+                        during the final demo.
+                    </p>
+                    <div class="blog-callout">
+                        <p>
+                            <strong>Project Name:</strong> MacroFit Coach &mdash; Track Your Macros.
+                            Log Your Workouts. Stay Connected With Your Coach.
+                        </p>
+                    </div>
+
+                    <!-- 2. Cloud Services Used -->
+                    <h2><i class="fas fa-cloud"></i> 2. Cloud Services Used</h2>
+                    <p>
+                        We chose Microsoft Azure as our cloud provider. The full stack is provisioned
+                        automatically using Terraform (Infrastructure as Code) and deployed via
+                        GitHub Actions (CI/CD). Here is a breakdown of every Azure service used:
+                    </p>
+
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <div class="tech-item-icon">&#128449;</div>
+                            <div class="tech-item-name">Azure Blob Storage</div>
+                            <div class="tech-item-desc">Static website hosting (HTML, CSS, JS)</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">&#9889;</div>
+                            <div class="tech-item-name">Azure Functions</div>
+                            <div class="tech-item-desc">Serverless Python API (visitor counter)</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">&#128204;</div>
+                            <div class="tech-item-name">Azure Cosmos DB</div>
+                            <div class="tech-item-desc">NoSQL database storing visitor count</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">&#128202;</div>
+                            <div class="tech-item-name">Application Insights</div>
+                            <div class="tech-item-desc">API monitoring, request tracing, error alerts</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">&#128196;</div>
+                            <div class="tech-item-name">Log Analytics</div>
+                            <div class="tech-item-desc">Centralized log workspace (30-day retention)</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">&#128279;</div>
+                            <div class="tech-item-name">Azure CDN / DNS</div>
+                            <div class="tech-item-desc">Custom domain + HTTPS/TLS certificate</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">&#128176;</div>
+                            <div class="tech-item-name">Cost Budget Alert</div>
+                            <div class="tech-item-desc">80% and 100% spend alerts via email</div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">&#128736;</div>
+                            <div class="tech-item-name">Terraform (IaC)</div>
+                            <div class="tech-item-desc">All resources defined as code</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. How the Visitor Counter Works -->
+                    <h2><i class="fas fa-users"></i> 3. How the Visitor Counter Works</h2>
+                    <p>
+                        The visitor counter is the most technically interesting component of the project.
+                        It demonstrates the full serverless cloud pattern: a browser calls an API,
+                        the API reads and writes to a database, and the result is returned and displayed.
+                    </p>
+
+                    <div class="blog-arch-card" id="architecture">
+                        <h3><i class="fas fa-diagram-project"></i> Architecture Flow</h3>
+                        <p style="color:var(--text-secondary); font-size:15px; line-height:1.8;">
+                            <strong style="color:var(--text-primary);">Step 1 &mdash; Browser loads the page.</strong><br>
+                            The static HTML/CSS/JS files are served from Azure Blob Storage.
+                            The site is delivered over HTTPS through Azure CDN.
+                        </p>
+                        <p style="color:var(--text-secondary); font-size:15px; line-height:1.8;">
+                            <strong style="color:var(--text-primary);">Step 2 &mdash; JavaScript calls the API.</strong><br>
+                            <code>counter.js</code> sends a POST request to the Azure Functions endpoint.
+                            POST was chosen to signal "this is a new visit" vs GET (read-only).
+                        </p>
+                        <p style="color:var(--text-secondary); font-size:15px; line-height:1.8;">
+                            <strong style="color:var(--text-primary);">Step 3 &mdash; Azure Function runs Python code.</strong><br>
+                            The function uses the <code>azure-cosmos</code> SDK to connect to Cosmos DB.
+                            It reads the current count document, increments the value by 1,
+                            and saves it using <code>upsert_item()</code>.
+                        </p>
+                        <p style="color:var(--text-secondary); font-size:15px; line-height:1.8;">
+                            <strong style="color:var(--text-primary);">Step 4 &mdash; JSON response returned.</strong><br>
+                            The function returns <code>{ "count": 1248, "status": "ok" }</code>.
+                            CORS headers are set to allow requests from the frontend domain only.
+                        </p>
+                        <p style="color:var(--text-secondary); font-size:15px; line-height:1.8; margin-bottom:0;">
+                            <strong style="color:var(--text-primary);">Step 5 &mdash; Counter animates on screen.</strong><br>
+                            JavaScript uses <code>requestAnimationFrame</code> with an ease-out cubic function
+                            to smoothly count from 0 to the returned value. If the API is unreachable,
+                            a cached value from <code>localStorage</code> is used as a fallback.
+                        </p>
+                    </div>
+
+                    <h3>Cosmos DB Structure</h3>
+                    <p>
+                        We use a single Cosmos DB SQL API container named <code>visitor-counter</code>
+                        with the partition key <code>/partitionKey</code>. The counter is stored as one document:
+                    </p>
+                    <div class="blog-arch-card" style="padding: 20px 24px;">
+                        <pre style="font-family: monospace; font-size: 14px; color: var(--accent-green); line-height: 1.6; white-space: pre-wrap;">{
+  "id": "global-visitor-count",
+  "partitionKey": "counter",
+  "count": 1248
+}</pre>
+                    </div>
+                    <p>
+                        This structure is intentionally simple. In a future version, the database would
+                        also hold tables for macro entries, workout logs, and client messages &mdash;
+                        each linked to a user ID.
+                    </p>
+
+                    <!-- 4. Infrastructure as Code -->
+                    <h2><i class="fas fa-code"></i> 4. Infrastructure as Code (Terraform)</h2>
+                    <p>
+                        All Azure resources are defined using Terraform so they can be created
+                        and destroyed repeatedly, consistently, and without clicking through the portal.
+                        This makes the project reproducible and demonstrates cloud automation skills.
+                    </p>
+                    <p>Our Terraform configuration (<code>iac/terraform/main.tf</code>) provisions:</p>
+                    <ul>
+                        <li>An <strong>Azure Resource Group</strong> to contain all resources</li>
+                        <li>An <strong>Azure Storage Account</strong> with static website hosting enabled</li>
+                        <li>An <strong>Azure Cosmos DB account</strong> with free tier + SQL API</li>
+                        <li>A <strong>Cosmos DB database</strong> and <strong>container</strong> for the visitor counter</li>
+                        <li>An <strong>Azure App Service Plan</strong> (consumption / serverless)</li>
+                        <li>An <strong>Azure Linux Function App</strong> running Python 3.11</li>
+                        <li><strong>Application Insights</strong> connected to a Log Analytics workspace</li>
+                        <li>A <strong>monthly budget alert</strong> at 80% and 100% of the spending cap</li>
+                    </ul>
+                    <div class="blog-callout">
+                        <p>
+                            <strong>Key benefit of IaC:</strong> Any team member can run
+                            <code>terraform apply</code> and have the entire infrastructure running
+                            in under 5 minutes &mdash; no manual setup required.
+                        </p>
+                    </div>
+
+                    <!-- 5. CI/CD Pipeline -->
+                    <h2><i class="fas fa-rotate"></i> 5. CI/CD Automation (GitHub Actions)</h2>
+                    <p>
+                        Every push to the <code>main</code> branch triggers our GitHub Actions pipeline,
+                        which automatically validates, deploys, and verifies the project.
+                        This eliminates manual FTP uploads and ensures every commit goes live consistently.
+                    </p>
+                    <p>Our pipeline (<code>.github/workflows/deploy.yml</code>) has four jobs:</p>
+                    <ul>
+                        <li>
+                            <strong>Job 1 &mdash; Lint &amp; Validate:</strong>
+                            Checks that all HTML, CSS, and JS files exist. Runs <code>flake8</code>
+                            on the Python API code to catch syntax errors.
+                        </li>
+                        <li>
+                            <strong>Job 2 &mdash; Deploy Static Site:</strong>
+                            Uses the Azure CLI to upload all HTML, CSS, and JS files
+                            to the Azure Blob Storage <code>$web</code> container.
+                        </li>
+                        <li>
+                            <strong>Job 3 &mdash; Deploy Azure Function:</strong>
+                            Installs Python dependencies and deploys the visitor counter API
+                            to Azure Functions using the official <code>Azure/functions-action</code>.
+                        </li>
+                        <li>
+                            <strong>Job 4 &mdash; Deployment Summary:</strong>
+                            Prints a summary to the GitHub Actions log confirming the branch,
+                            commit SHA, and actor who triggered the deploy.
+                        </li>
+                    </ul>
+                    <p>
+                        GitHub Secrets are used to store all sensitive credentials
+                        (<code>AZURE_CREDENTIALS</code>, <code>STORAGE_ACCOUNT_NAME</code>,
+                        <code>FUNCTION_APP_KEY</code>) &mdash; they are never exposed in the source code.
+                    </p>
+
+                    <!-- 6. DNS and HTTPS -->
+                    <h2><i class="fas fa-lock"></i> 6. DNS and HTTPS Setup</h2>
+                    <p>
+                        The site is served over HTTPS using Azure CDN with a custom domain.
+                        Here is the step-by-step process we followed:
+                    </p>
+                    <ul>
+                        <li>Registered a custom domain (e.g., <strong>macrofitcoach.com</strong>) through a registrar</li>
+                        <li>Created an Azure CDN profile and endpoint pointing at the Blob Storage static site</li>
+                        <li>Added a CNAME record in the domain registrar DNS settings pointing to the CDN endpoint</li>
+                        <li>Added the custom domain to the CDN endpoint in the Azure Portal</li>
+                        <li>Enabled the free <strong>Azure-managed TLS/HTTPS certificate</strong> on the CDN endpoint</li>
+                        <li>Configured an HTTP &rarr; HTTPS redirect rule so all traffic uses TLS</li>
+                    </ul>
+                    <p>
+                        Result: the site loads over <code>https://macrofitcoach.com</code> with a
+                        valid certificate, an A+ security rating, and automatic certificate renewal.
+                    </p>
+
+                    <!-- 7. Monitoring and Logging -->
+                    <h2><i class="fas fa-chart-line"></i> 7. Monitoring, Logging &amp; Alerts</h2>
+                    <p>
+                        Azure Application Insights is connected to the Azure Function App and tracks:
+                    </p>
+                    <ul>
+                        <li>Every API request to the visitor counter (response time, status code, success/failure)</li>
+                        <li>Function execution errors with full stack traces</li>
+                        <li>Live metrics dashboard viewable in the Azure Portal</li>
+                        <li>Dependency tracking for Cosmos DB calls</li>
+                    </ul>
+                    <p>
+                        Logs are stored in a <strong>Log Analytics Workspace</strong> with a 30-day
+                        retention window. We can query logs using Kusto Query Language (KQL) to analyze
+                        traffic patterns and debug issues.
+                    </p>
+                    <p>
+                        A <strong>monthly budget alert</strong> is configured using Terraform to email
+                        the team when Azure spending reaches 80% and 100% of our cap. This prevents
+                        unexpected charges and demonstrates cloud cost management awareness.
+                    </p>
+
+                    <!-- 8. Security -->
+                    <h2><i class="fas fa-shield-alt"></i> 8. Security Practices</h2>
+                    <p>
+                        We followed these security best practices throughout the project:
+                    </p>
+                    <ul>
+                        <li><strong>No secrets in source code</strong> &mdash; all credentials are in GitHub Secrets or Azure App Settings (environment variables)</li>
+                        <li><strong>Least-privilege IAM</strong> &mdash; the CI/CD service principal has only the permissions needed to deploy</li>
+                        <li><strong>CORS configured</strong> &mdash; the Azure Function only allows requests from the frontend domain</li>
+                        <li><strong>HTTPS everywhere</strong> &mdash; all traffic is encrypted via Azure CDN + managed TLS certificate</li>
+                        <li><strong>XSS prevention</strong> &mdash; all user inputs rendered in JavaScript are HTML-escaped before DOM insertion</li>
+                        <li><strong>Input validation</strong> &mdash; form inputs use type, min, and max HTML attributes plus server-side validation</li>
+                        <li><strong>Function authentication</strong> &mdash; Azure Function requires a function key for API access</li>
+                    </ul>
+
+                    <!-- 9. Challenges and Lessons Learned -->
+                    <h2><i class="fas fa-graduation-cap"></i> 9. Challenges &amp; Lessons Learned</h2>
+
+                    <h3>Challenge 1: CORS Configuration</h3>
+                    <p>
+                        When we first deployed the Azure Function, the browser blocked all API calls
+                        with a CORS error. We had to configure <code>cors.allowed_origins</code>
+                        in both the Terraform function app settings and in our Python function code.
+                        We also needed to handle the preflight OPTIONS request correctly.
+                        <strong>Lesson:</strong> Always test your API from the actual frontend domain,
+                        not just Postman.
+                    </p>
+
+                    <h3>Challenge 2: Terraform State Management</h3>
+                    <p>
+                        On the first <code>terraform apply</code>, we forgot to configure a remote
+                        state backend. This meant each team member's local state file was out of sync.
+                        We resolved this by adding an Azure Blob Storage backend for Terraform state
+                        so the state file is shared and locked during applies.
+                        <strong>Lesson:</strong> Always configure remote state before working as a team.
+                    </p>
+
+                    <h3>Challenge 3: Cosmos DB Free Tier Limit</h3>
+                    <p>
+                        Azure only allows one Cosmos DB free tier account per subscription.
+                        Two team members tried to deploy in the same subscription and got an error.
+                        We resolved this by designating one subscription for the project and sharing access.
+                        <strong>Lesson:</strong> Understand subscription-level limits before starting.
+                    </p>
+
+                    <h3>Challenge 4: GitHub Actions Azure Login</h3>
+                    <p>
+                        Configuring the <code>AZURE_CREDENTIALS</code> secret for GitHub Actions
+                        required creating a service principal with the correct role assignments.
+                        The JSON format for the secret is specific and easy to get wrong.
+                        <strong>Lesson:</strong> Follow the official Azure/login action documentation
+                        exactly, and test the login step in isolation first.
+                    </p>
+
+                    <!-- 10. Weekly Timeline -->
+                    <h2><i class="fas fa-calendar-week"></i> 10. Weekly Project Timeline</h2>
+
+                    <div class="blog-arch-card">
+                        <h3 style="color:var(--accent-green); margin-bottom: 16px;">Week 1 &mdash; Foundation</h3>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Built HTML/CSS/JS landing page (MacroFit Coach)</li>
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Set up GitHub repository and assigned team roles</li>
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Configured Azure subscription and IAM basics</li>
+                            <li style="padding: 6px 0; font-size:14px; color:var(--text-secondary);">&#9989; Deployed early static site to Azure Blob Storage</li>
+                        </ul>
+                    </div>
+
+                    <div class="blog-arch-card">
+                        <h3 style="color:var(--accent-blue); margin-bottom: 16px;">Week 2 &mdash; Networking &amp; Counter UI</h3>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Added visitor counter frontend (counter.js)</li>
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Set up Azure CDN and custom domain</li>
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Configured HTTPS with managed TLS certificate</li>
+                            <li style="padding: 6px 0; font-size:14px; color:var(--text-secondary);">&#9989; Enabled Application Insights + Log Analytics</li>
+                        </ul>
+                    </div>
+
+                    <div class="blog-arch-card">
+                        <h3 style="color:var(--accent-purple); margin-bottom: 16px;">Week 3 &mdash; Backend &amp; IaC</h3>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Built Python Azure Function visitor counter API</li>
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Connected API to Cosmos DB (NoSQL)</li>
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Wrote Terraform IaC templates for all resources</li>
+                            <li style="padding: 6px 0; font-size:14px; color:var(--text-secondary);">&#9989; Tested API with Postman and updated architecture diagram</li>
+                        </ul>
+                    </div>
+
+                    <div class="blog-arch-card">
+                        <h3 style="color:var(--accent-orange); margin-bottom: 16px;">Week 4 &mdash; CI/CD, Final Polish &amp; Demo</h3>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Built GitHub Actions CI/CD pipeline (4 jobs)</li>
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Added Team Info page with GitHub profile links</li>
+                            <li style="padding: 6px 0; border-bottom: 1px solid var(--border); font-size:14px; color:var(--text-secondary);">&#9989; Wrote blog / project write-up (this page)</li>
+                            <li style="padding: 6px 0; font-size:14px; color:var(--text-secondary);">&#9989; Final testing, demo preparation, and documentation</li>
+                        </ul>
+                    </div>
+
+                    <!-- 11. Architecture Diagram Description -->
+                    <h2><i class="fas fa-sitemap"></i> 11. Architecture Diagram</h2>
+                    <p>
+                        The architecture diagram below describes how all components connect.
+                        Replace this section with a screenshot of your actual Azure architecture
+                        diagram from the portal or from a tool like draw.io or Lucidchart.
+                    </p>
+
+                    <div class="blog-arch-card" style="text-align: center;">
+                        <div style="
+                            background: var(--bg-secondary);
+                            border: 2px dashed var(--border-light);
+                            border-radius: 12px;
+                            padding: 60px 40px;
+                            color: var(--text-muted);
+                            font-size: 15px;
+                        ">
+                            <i class="fas fa-image" style="font-size: 40px; color: var(--accent-green); display: block; margin-bottom: 16px;"></i>
+                            <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">
+                                Architecture Diagram Goes Here
+                            </strong>
+                            Replace this placeholder with a screenshot of your Azure architecture diagram.<br>
+                            Tools: <a href="https://app.diagrams.net" target="_blank" rel="noopener" style="color:var(--accent-green);">draw.io</a>,
+                            Azure Portal &rarr; Resource Group &rarr; "View diagram", or Lucidchart.
+                        </div>
+                    </div>
+
+                    <p>
+                        <strong>Component overview (describe in your diagram):</strong>
+                    </p>
+                    <ul>
+                        <li><strong>User Browser</strong> &rarr; Azure CDN (HTTPS) &rarr; Azure Blob Storage (static site)</li>
+                        <li><strong>counter.js</strong> &rarr; Azure Functions HTTP trigger &rarr; Cosmos DB (read + increment)</li>
+                        <li><strong>GitHub repo</strong> &rarr; GitHub Actions pipeline &rarr; Azure (deploy site + function)</li>
+                        <li><strong>Azure Function App</strong> &rarr; Application Insights &rarr; Log Analytics Workspace</li>
+                        <li><strong>Terraform state</strong> stored in Azure Blob Storage (remote backend)</li>
+                    </ul>
+
+                    <!-- 12. Final Demo Checklist -->
+                    <h2><i class="fas fa-clipboard-list"></i> 12. Final Demo Checklist</h2>
+                    <ul>
+                        <li>&#9989; Live site accessible via HTTPS custom domain</li>
+                        <li>&#9989; Visitor counter increments on every page load</li>
+                        <li>&#9989; Visitor count persists in Cosmos DB (show in Azure Portal)</li>
+                        <li>&#9989; Azure Function logs visible in Application Insights</li>
+                        <li>&#9989; GitHub Actions pipeline shows successful deployment run</li>
+                        <li>&#9989; Terraform plan/apply output shown (or screenshot)</li>
+                        <li>&#9989; Team Info page with all GitHub profile links working</li>
+                        <li>&#9989; Macro tracker updates and saves to browser storage</li>
+                        <li>&#9989; Workout tracker add/delete rows works</li>
+                        <li>&#9989; Contact form shows success message</li>
+                        <li>&#9989; Dark/light mode toggle works</li>
+                        <li>&#9989; Site is responsive on mobile (show on phone or DevTools)</li>
+                        <li>&#9989; Budget alert configured (show in Azure Cost Management)</li>
+                    </ul>
+
+                    <!-- Closing -->
+                    <div class="blog-callout" style="margin-top: 48px;">
+                        <p>
+                            <strong>Thank you for reading!</strong> This project taught us how real-world cloud
+                            applications are designed, deployed, and monitored. We started with a blank
+                            text editor and ended with a fully deployed, HTTPS-secured, serverless cloud
+                            application &mdash; and we documented every step of the way.
+                        </p>
+                    </div>
+
+                    <!-- Navigation links -->
+                    <div style="display:flex; gap:14px; margin-top:48px; flex-wrap:wrap;">
+                        <a href="index.html" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Visit Live Site
+                        </a>
+                        <a href="team.html" class="btn btn-outline">
+                            <i class="fas fa-users"></i> Meet the Team
+                        </a>
+                        <a href="https://github.com/Team11-F-it-services-app/MicroFit" target="_blank" rel="noopener" class="btn btn-ghost">
+                            <i class="fab fa-github"></i> GitHub Repo
+                        </a>
+                    </div>
+
+                </div><!-- /.blog-content -->
+            </div><!-- /.blog-container -->
+        </div><!-- /.container -->
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2026 MacroFit Coach &mdash; Cloud Computing Capstone Project</p>
+                <p>
+                    <a href="index.html" style="color:var(--accent-green);">&#8592; Back to Home</a>
+                    &nbsp;&bull;&nbsp;
+                    <a href="team.html" style="color:var(--accent-green);">Meet the Team</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =============================================
+         PAGE SCRIPTS
+         ============================================= -->
+    <script>
+        'use strict';
+
+        /* Theme toggle */
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon   = document.getElementById('themeIcon');
+        const htmlEl      = document.documentElement;
+
+        function applyTheme(theme) {
+            htmlEl.setAttribute('data-theme', theme);
+            if (themeIcon) themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        applyTheme(localStorage.getItem('mfc_theme') || 'dark');
+
+        themeToggle?.addEventListener('click', () => {
+            const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('mfc_theme', next);
+            applyTheme(next);
+        });
+
+        /* Mobile hamburger */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('navLinks');
+        hamburger?.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+        /* Scroll reveal */
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+        /* Nav auth state */
+        (function() {
+            const user = JSON.parse(localStorage.getItem('mfc_currentUser') || 'null');
+            const getStartedBtn = document.getElementById('navGetStarted');
+            const navUser = document.getElementById('navUser');
+            const navUserName = document.getElementById('navUserName');
+            const navLogout = document.getElementById('navLogout');
+            if (user && user.displayName) {
+                if (getStartedBtn) getStartedBtn.style.display = 'none';
+                if (navUser) navUser.style.display = 'flex';
+                if (navUserName) navUserName.textContent = user.displayName;
+            }
+            navLogout?.addEventListener('click', () => {
+                localStorage.removeItem('mfc_currentUser');
+                window.location.reload();
+            });
+        })();
+    </script>
+</body>
+</html>
