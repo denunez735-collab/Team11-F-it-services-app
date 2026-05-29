@@ -27,14 +27,14 @@ from azure.cosmos import CosmosClient, exceptions
 # ---- Cosmos DB Configuration ----
 # All values loaded from environment variables / Application Settings.
 # This keeps secrets out of the source code.
-COSMOS_ENDPOINT        = os.environ.get("COSMOS_ENDPOINT", "")
-COSMOS_KEY             = os.environ.get("COSMOS_KEY", "")
-COSMOS_DB_NAME         = os.environ.get("COSMOS_DB_NAME", "macrofit-db")
-COSMOS_CONTAINER_NAME  = os.environ.get("COSMOS_CONTAINER_NAME", "visitor-counter")
+COSMOS_ENDPOINT = os.environ.get("COSMOS_ENDPOINT", "")
+COSMOS_KEY = os.environ.get("COSMOS_KEY", "")
+COSMOS_DB_NAME = os.environ.get("COSMOS_DB_NAME", "macrofit-db")
+COSMOS_CONTAINER_NAME = os.environ.get("COSMOS_CONTAINER_NAME", "visitor-counter")
 
 # The single document that holds the global visitor count
-COUNTER_DOCUMENT_ID    = "global-visitor-count"
-COUNTER_PARTITION_KEY  = "counter"
+COUNTER_DOCUMENT_ID = "global-visitor-count"
+COUNTER_PARTITION_KEY = "counter"
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -55,10 +55,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Example: "https://macrofitcoach.com"
     cors_origin = os.environ.get("CORS_ORIGIN", "*")
     headers = {
-        "Access-Control-Allow-Origin":  cors_origin,
+        "Access-Control-Allow-Origin": cors_origin,
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, x-functions-key",
-        "Content-Type":                 "application/json",
+        "Content-Type": "application/json",
     }
 
     # ---- Handle CORS preflight (OPTIONS) ----
@@ -77,28 +77,28 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     try:
         # ---- Connect to Cosmos DB ----
-        client    = CosmosClient(COSMOS_ENDPOINT, credential=COSMOS_KEY)
-        database  = client.get_database_client(COSMOS_DB_NAME)
+        client = CosmosClient(COSMOS_ENDPOINT, credential=COSMOS_KEY)
+        database = client.get_database_client(COSMOS_DB_NAME)
         container = database.get_container_client(COSMOS_CONTAINER_NAME)
 
         # ---- Read current counter document ----
         try:
-            item          = container.read_item(item=COUNTER_DOCUMENT_ID, partition_key=COUNTER_PARTITION_KEY)
+            item = container.read_item(item=COUNTER_DOCUMENT_ID, partition_key=COUNTER_PARTITION_KEY)
             current_count = int(item.get("count", 0))
         except exceptions.CosmosResourceNotFoundError:
             # First ever visit — document does not exist yet, start at 0
             logging.info("Counter document not found. Creating with count = 0.")
             current_count = 0
             item = {
-                "id":           COUNTER_DOCUMENT_ID,
+                "id": COUNTER_DOCUMENT_ID,
                 "partitionKey": COUNTER_PARTITION_KEY,
-                "count":        0,
+                "count": 0,
             }
 
         # ---- Increment on POST (new visit) ----
         if req.method == "POST":
             current_count += 1
-            item["count"]  = current_count
+            item["count"] = current_count
             container.upsert_item(item)
             logging.info("Visitor count incremented to: %d", current_count)
 
