@@ -1048,5 +1048,20 @@
             });
         })();
     </script>
+<script>
+fetch('/config.json')
+  .then(r => r.json())
+  .then(cfg => fetch(cfg.apiBaseUrl))
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('visitor-count').textContent =
+      'Visitors: ' + data.count;
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById('visitor-count').textContent =
+      'Visitors: error';
+  });
+</script>    
 </body>
 </html>
