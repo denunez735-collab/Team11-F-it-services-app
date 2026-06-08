@@ -1054,12 +1054,12 @@ fetch('/config.json')
   .then(cfg => fetch(cfg.apiBaseUrl))
   .then(r => r.json())
   .then(data => {
-    document.getElementById('visitor-count').textContent =
+    document.getElementById('visitorcount').textContent =
       'Visitors: ' + data.count;
   })
   .catch(err => {
     console.error(err);
-    document.getElementById('visitor-count').textContent =
+    document.getElementById('visitorcount').textContent =
       'Visitors: error';
   });
 </script>    
